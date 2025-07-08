@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>HTML Lesson | Innovation at Work</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f8fb;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background: #0077cc;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
+    .container {
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 1rem;
+      background: white;
+      border-radius: 8px;
+    }
+    .step {
+      background: #eef6ff;
+      border-left: 5px solid #0077cc;
+      margin-bottom: 1rem;
+      padding: 1rem;
+      border-radius: 5px;
+    }
+    textarea {
+      width: 100%;
+      height: 150px;
+      font-family: monospace;
+      padding: 1rem;
+      margin-top: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    iframe {
+      width: 100%;
+      height: 200px;
+      margin-top: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      background: white;
+    }
+    button {
+      background: #00aa55;
+      color: white;
+      padding: 0.6rem 1rem;
+      border: none;
+      border-radius: 5px;
+      margin-top: 1rem;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #008844;
+    }
+    .techai-tip {
+      font-style: italic;
+      color: #444;
+      background: #f9f9f9;
+      padding: 0.7rem;
+      border-left: 4px solid #00bbdd;
+      margin: 1rem 0;
+    }
+    .popup {
+      display: none;
+      position: fixed;
+      background: white;
+      padding: 2rem;
+      box-shadow: 0 0 20px rgba(0,0,0,0.3);
+      border-radius: 8px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 100;
+    }
+    .popup.show {
+      display: block;
+    }
+    .close-btn {
+      background: red;
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>📘 Learn HTML</h1>
+    <p>Complete the lesson to earn XP and a certificate!</p>
+  </header>
+  <div class="container">
+    <div class="step">
+      <h3>Step 1: Create a webpage</h3>
+      <p>Write the basic structure of an HTML document below:</p>
+      <textarea id="htmlCode">
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My First Page</title>
+</head>
+<body>
+  <h1>Hello, world!</h1>
+</body>
+</html>
+      </textarea>
+      <button onclick="runHTML()">Run Code</button>
+      <iframe id="previewFrame"></iframe>
+      <div class="techai-tip">🐧 TechAI says: Great start! Every HTML page needs the <code>&lt;html&gt;</code>, <code>&lt;head&gt;</code> and <code>&lt;body&gt;</code> sections!</div>
+    </div>
+    <button onclick="completeLesson()">✅ Finish Lesson & Earn XP</button>
+  </div>
+  <div class="popup" id="congratsPopup">
+    <h2>🎉 Well Done!</h2>
+    <p>You earned <strong>100 XP</strong> and unlocked your HTML Certificate!</p>
+    <p><a href="certificate-html.pdf" target="_blank">Download Certificate (PDF)</a></p>
+    <button class="close-btn" onclick="closePopup()">Close</button>
+  </div>
+  <script>
+    function runHTML() {
+      const code = document.getElementById("htmlCode").value;
+      const frame = document.getElementById("previewFrame");
+      const doc = frame.contentDocument || frame.contentWindow.document;
+      doc.open();
+      doc.write(code);
+      doc.close();
+    }
+    function completeLesson() {
+      document.getElementById("congratsPopup").classList.add("show");
+      // You can add XP here to localStorage if logged in
+    }
+    function closePopup() {
+      document.getElementById("congratsPopup").classList.remove("show");
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>JavaScript Lesson | Innovation at Work</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #fff9e6;
+      margin: 0;
+      padding: 0;
+      color: #b36b00;
+    }
+    header {
+      background: #b36b00;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
+    .container {
+      max-width: 900px;
+      margin: 2rem auto;
+      background: white;
+      border-radius: 8px;
+      padding: 1.5rem;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    .step {
+      background: #fff3cc;
+      border-left: 6px solid #b36b00;
+      margin-bottom: 1.5rem;
+      padding: 1rem 1.5rem;
+      border-radius: 6px;
+    }
+    pre {
+      background: #fff7e0;
+      padding: 1rem;
+      border-radius: 5px;
+      overflow-x: auto;
+      font-family: monospace;
+      margin-top: 0.5rem;
+    }
+    button {
+      background: #b36b00;
+      color: white;
+      padding: 0.6rem 1.2rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 1rem;
+    }
+    button:hover {
+      background: #7a4700;
+    }
+    .techai-tip {
+      background: #fff9e6;
+      border-left: 5px solid #b36b00;
+      padding: 0.8rem;
+      margin-top: 1rem;
+      font-style: italic;
+      color: #996600;
+    }
+    .popup {
+      display: none;
+      position: fixed;
+      background: white;
+      padding: 2rem;
+      box-shadow: 0 0 20px rgba(0,0,0,0.3);
+      border-radius: 8px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 1000;
+      max-width: 90%;
+      width: 400px;
+      text-align: center;
+    }
+    .popup.show {
+      display: block;
+    }
+    .close-btn {
+      background: #b36b00;
+      color: white;
+      border: none;
+      padding: 0.6rem 1rem;
+      margin-top: 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>📜 Learn JavaScript</h1>
+    <p>Start coding dynamic web pages! Complete and earn XP & a certificate.</p>
+  </header>
+  <div class="container">
+    <div class="step">
+      <h3>Step 1: Your First JavaScript Alert</h3>
+      <p>Try this code in your browser console or embed it in an HTML file:</p>
+      <pre>
+alert('Hello, Innovation at Work!');
+      </pre>
+      <p><em>JavaScript makes websites interactive and fun!</em></p>
+    </div>
+    <button onclick="completeLesson()">✅ Finish Lesson & Earn XP</button>
+  </div>
+  <div class="popup" id="congratsPopup">
+    <h2>🎉 Awesome!</h2>
+    <p>You earned <strong>100 XP</strong> and unlocked your JavaScript Certificate!</p>
+    <p><a href="certificates/certificate-javascript.pdf" target="_blank">Download Certificate (PDF)</a></p>
+    <button class="close-btn" onclick="closePopup()">Close</button>
+  </div>
+  <script>
+    function completeLesson() {
+      document.getElementById('congratsPopup').classList.add('show');
+    }
+    function closePopup() {
+      document.getElementById('congratsPopup').classList.remove('show');
+    }
+  </script>
+</body>
+</html>

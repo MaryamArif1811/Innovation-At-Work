@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>R Lesson | Innovation at Work</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f7f7fc;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background: #662d91;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
+    .container {
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 1rem;
+      background: white;
+      border-radius: 8px;
+    }
+    .step {
+      background: #efe2ff;
+      border-left: 5px solid #662d91;
+      margin-bottom: 1rem;
+      padding: 1rem;
+      border-radius: 5px;
+    }
+    textarea {
+      width: 100%;
+      height: 150px;
+      font-family: monospace;
+      padding: 1rem;
+      margin-top: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    iframe {
+      width: 100%;
+      height: 150px;
+      border: 1px solid #ccc;
+      margin-top: 10px;
+      border-radius: 5px;
+    }
+    button {
+      background: #662d91;
+      color: white;
+      padding: 0.6rem 1rem;
+      border: none;
+      border-radius: 5px;
+      margin-top: 1rem;
+      cursor: pointer;
+    }
+    .techai-tip {
+      font-style: italic;
+      background: #f8f0ff;
+      padding: 0.7rem;
+      border-left: 4px solid #a55eea;
+      margin-top: 1rem;
+    }
+    .popup {
+      display: none;
+      position: fixed;
+      background: white;
+      padding: 2rem;
+      box-shadow: 0 0 20px rgba(0,0,0,0.3);
+      border-radius: 8px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 100;
+    }
+    .popup.show {
+      display: block;
+    }
+    .close-btn {
+      background: red;
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>📊 Learn R Programming</h1>
+    <p>Explore R for data and stats! Finish the task to earn XP & your certificate.</p>
+  </header>
+  <div class="container">
+    <div class="step">
+      <h3>Step 1: Understand R Code</h3>
+      <p>This code creates a bar plot using sample data. You can’t run R here, but read and learn!</p>
+      <textarea readonly>
+# R Sample Code
+heights <- c(145, 160, 170, 175, 180)
+names <- c("Ali", "Sara", "John", "Fatima", "Omar")
+barplot(heights, names.arg = names, col = "lightblue", main = "Student Heights")
+      </textarea>
+      <div class="techai-tip">🐧 TechAI says: R is used in data science and statistics. You can make graphs, analyze data, and do cool number tricks!</div>
+    </div>
+    <button onclick="completeRLesson()">✅ Finish Lesson & Earn XP</button>
+  </div>
+  <div class="popup" id="congratsPopup">
+    <h2>🎉 Well Done!</h2>
+    <p>You earned <strong>100 XP</strong> and unlocked your R Certificate!</p>
+    <p><a href="certificate-r.pdf" target="_blank">Download Certificate (PDF)</a></p>
+    <button class="close-btn" onclick="closePopup()">Close</button>
+  </div>
+  <script>
+    function completeRLesson() {
+      document.getElementById("congratsPopup").classList.add("show");
+    }
+    function closePopup() {
+      document.getElementById("congratsPopup").classList.remove("show");
+    }
+  </script>
+</body>
+</html>

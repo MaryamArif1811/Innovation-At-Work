@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Events & Submissions | Innovation at Work</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <header>
+    <img src="images/logo.png" class="logo" />
+    <h1>Current Events & Submissions</h1>
+    <select id="languageSelect">
+      <option value="en">🌐 English</option>
+      <option value="ar">🇸🇦 Arabic</option>
+      <option value="hi">🇮🇳 Hindi</option>
+      <option value="fr">🇫🇷 French</option>
+      <option value="ur">🇵🇰 Urdu</option>
+      <option value="es">🇪🇸 Spanish</option>
+    </select>
+  </header>
+  <main>
+    <section id="eventsSection">
+      <h2>Ongoing Innovation Events</h2>
+      <ul id="eventsList">
+        <!-- Events loaded by JS -->
+      </ul>
+    </section>
+    <section id="submitSection" style="display:none;">
+      <h2>Submit Your Work</h2>
+      <form id="submitForm">
+        <label for="eventSelect">Choose event:</label><br />
+        <select id="eventSelect" required>
+          <option value="">-- Select event --</option>
+        </select><br /><br />
+        <label for="submissionText">Describe your submission or share a link:</label><br />
+        <textarea id="submissionText" rows="5" placeholder="Write about your work or add link here..." required></textarea><br /><br />
+        <button type="submit">Submit Work</button>
+      </form>
+      <p id="submitMsg"></p>
+    </section>
+  </main>
+  <footer>
+    <div class="footer-links">
+      <a href="https://scratch.mit.edu/users/MaryamArif_1811/" target="_blank">My Scratch</a>
+      <a href="https://scratch.mit.edu/" target="_blank">Scratch</a>
+      <a href="https://pictoblox.ai/" target="_blank">Pictoblox</a>
+      <a href="https://developers.google.com/blockly" target="_blank">Blockly</a>
+    </div>
+    <img src="images/lets-innovate-together.png" class="footer-img" />
+    <p class="credit">🌟 Website proudly created by Maryam Arif 🌟</p>
+  </footer>
+  <script src="js/events.js"></script>
+  <script src="js/lang.js"></script>
+  <script src="js/techai.js"></script>
+</body>
+</html>

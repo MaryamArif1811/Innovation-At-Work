@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>SQL Lesson | Innovation at Work</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #e8f5e9;
+      margin: 0; padding: 0;
+    }
+    header {
+      background: #43a047;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
+    .container {
+      max-width: 900px;
+      margin: 2rem auto;
+      background: white;
+      padding: 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(67, 160, 71, 0.3);
+    }
+    .step {
+      background: #d0f0c0;
+      border-left: 6px solid #43a047;
+      margin-bottom: 1.5rem;
+      padding: 1rem;
+      border-radius: 6px;
+    }
+    textarea {
+      width: 100%;
+      height: 130px;
+      font-family: monospace;
+      padding: 1rem;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      resize: vertical;
+      margin-top: 10px;
+    }
+    button {
+      background: #43a047;
+      color: white;
+      border: none;
+      padding: 0.6rem 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 1rem;
+      font-weight: bold;
+    }
+    button:hover {
+      background: #2e7d32;
+    }
+    .techai-tip {
+      background: #d0f0c0;
+      border-left: 4px solid #43a047;
+      font-style: italic;
+      padding: 0.7rem;
+      margin: 1rem 0;
+      color: #2e7d32;
+    }
+    .popup {
+      display: none;
+      position: fixed;
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.3);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 999;
+      max-width: 90%;
+      text-align: center;
+    }
+    .popup.show {
+      display: block;
+    }
+    .close-btn {
+      background: #2e7d32;
+      color: white;
+      margin-top: 1rem;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🗄️ SQL Beginner Lesson</h1>
+    <p>Learn how to query data using SQL commands!</p>
+  </header>
+  <div class="container">
+    <div class="step">
+      <h3>Step 1: Write a SQL Query</h3>
+      <p>Try writing a query to select all data from the "Students" table:</p>
+      <textarea id="sqlCode">
+SELECT * FROM Students;
+      </textarea>
+    </div>
+    <div class="techai-tip">🐧 TechAI says: SQL helps you talk to databases and manage data efficiently!</div>
+    <button onclick="completeSQLLesson()">✅ Finish Lesson & Earn XP</button>
+  </div>
+  <div class="popup" id="popup">
+    <h2>🎉 Well Done!</h2>
+    <p>You earned <strong>100 XP</strong> and unlocked your SQL Certificate!</p>
+    <p><a href="certificate-sql.pdf" target="_blank">Download Certificate (PDF)</a></p>
+    <button class="close-btn" onclick="closePopup()">Close</button>
+  </div>
+  <script>
+    function completeSQLLesson() {
+      const code = document.getElementById('sqlCode').value.trim();
+      if (code.length < 15) {
+        alert('Please enter a valid SQL query.');
+        return;
+      }
+      document.getElementById('popup').classList.add('show');
+    }
+    function closePopup() {
+      document.getElementById('popup').classList.remove('show');
+    }
+  </script>
+</body>
+</html>

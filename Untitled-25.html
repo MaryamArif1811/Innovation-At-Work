@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Leaderboard | Innovation at Work</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f8f8f8;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background: #0077cc;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
+    .container {
+      max-width: 1000px;
+      margin: auto;
+      padding: 2rem;
+    }
+    select {
+      padding: 8px;
+      margin: 0.5rem;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1.5rem;
+      background: white;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 12px;
+      text-align: center;
+    }
+    th {
+      background: #0077cc;
+      color: white;
+    }
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+<header>
+  <h1>🌟 Leaderboard</h1>
+</header>
+<div class="container">
+  <div>
+    <label>View by:</label>
+    <select id="typeFilter">
+      <option value="global">Global</option>
+      <option value="school">School</option>
+      <option value="class">Class</option>
+      <option value="team">Team</option>
+      <option value="individual">Individual</option>
+    </select>
+    <label>Time:</label>
+    <select id="timeFilter">
+      <option value="lifetime">Lifetime</option>
+      <option value="yearly">Yearly</option>
+      <option value="monthly">Monthly</option>
+      <option value="weekly">Weekly</option>
+      <option value="daily">Daily</option>
+      <option value="hourly">Hourly</option>
+    </select>
+  </div>
+  <table id="leaderboardTable">
+    <thead>
+      <tr>
+        <th>Rank</th>
+        <th>Username</th>
+        <th>XP</th>
+      </tr>
+    </thead>
+    <tbody id="leaderboardBody">
+      <!-- Entries will be inserted here -->
+    </tbody>
+  </table>
+</div>
+<script>
+  const typeFilter = document.getElementById('typeFilter');
+  const timeFilter = document.getElementById('timeFilter');
+  const leaderboardBody = document.getElementById('leaderboardBody');
+  function mockLeaderboardData() {
+    const users = JSON.parse(localStorage.getItem('users')) || {};
+    return Object.entries(users)
+      .map(([username, data]) => ({ username, xp: data.xp || 0 }))
+      .sort((a, b) => b.xp - a.xp)
+      .slice(0, 100); // Top 100
+  }
+  function renderLeaderboard() {
+    const type = typeFilter.value;
+    const time = timeFilter.value;
+    leaderboardBody.innerHTML = "";
+    const data = mockLeaderboardData(); // For now, just static
+    data.forEach((user, index) => {
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td>#${index + 1}</td>
+        <td>${user.username}</td>
+        <td>${user.xp}</td>
+      `;
+      leaderboardBody.appendChild(tr);
+    });
+  }
+  typeFilter.addEventListener('change', renderLeaderboard);
+  timeFilter.addEventListener('change', renderLeaderboard);
+  renderLeaderboard();
+</script>
+</body>
+</html>

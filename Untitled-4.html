@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>PHP Lesson | Innovation at Work</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f3f8ff;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background: #4d6dff;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
+    .container {
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 1rem;
+      background: white;
+      border-radius: 8px;
+    }
+    .step {
+      background: #e6ecff;
+      border-left: 5px solid #4d6dff;
+      margin-bottom: 1rem;
+      padding: 1rem;
+      border-radius: 5px;
+    }
+    textarea {
+      width: 100%;
+      height: 180px;
+      font-family: monospace;
+      padding: 1rem;
+      margin-top: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    button {
+      background: #4d6dff;
+      color: white;
+      padding: 0.6rem 1rem;
+      border: none;
+      border-radius: 5px;
+      margin-top: 1rem;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #2e4fd6;
+    }
+    .techai-tip {
+      font-style: italic;
+      color: #333;
+      background: #edf1ff;
+      padding: 0.7rem;
+      border-left: 4px solid #4d6dff;
+      margin: 1rem 0;
+    }
+    .popup {
+      display: none;
+      position: fixed;
+      background: white;
+      padding: 2rem;
+      box-shadow: 0 0 20px rgba(0,0,0,0.3);
+      border-radius: 8px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 100;
+    }
+    .popup.show {
+      display: block;
+    }
+    .close-btn {
+      background: red;
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>💻 Learn PHP</h1>
+    <p>Build your first server-side script! Earn XP and a PHP certificate.</p>
+  </header>
+  <div class="container">
+    <div class="step">
+      <h3>Step 1: Hello PHP</h3>
+      <p>This is a simple PHP script:</p>
+      <textarea readonly>
+<?php
+  echo "Hello, PHP World!";
+?>
+      </textarea>
+    </div>
+    <div class="step">
+      <h3>Step 2: Try It Online</h3>
+      <p>Use an online PHP editor to test your code:</p>
+      <a href="https://www.w3schools.com/php/phptryit.asp?filename=tryphp_intro" target="_blank">
+        <button>▶️ Try PHP Online</button>
+      </a>
+    </div>
+    <div class="techai-tip">
+      🐧 TechAI says: PHP powers many websites including WordPress! It runs on the server and can create pages with real-time info.
+    </div>
+    <button onclick="completeLesson()">✅ Finish Lesson & Earn XP</button>
+  </div>
+  <div class="popup" id="congratsPopup">
+    <h2>🎉 Well Done!</h2>
+    <p>You earned <strong>100 XP</strong> and unlocked your PHP Certificate!</p>
+    <p><a href="certificates/certificate-php.pdf" target="_blank">Download Certificate (PDF)</a></p>
+    <button class="close-btn" onclick="closePopup()">Close</button>
+  </div>
+  <script>
+    function completeLesson() {
+      document.getElementById("congratsPopup").classList.add("show");
+    }
+    function closePopup() {
+      document.getElementById("congratsPopup").classList.remove("show");
+    }
+  </script>
+</body>
+</html>

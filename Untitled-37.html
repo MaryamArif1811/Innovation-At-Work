@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Robotics Lesson | Innovation at Work</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #e8f0fe;
+      margin: 0; padding: 0;
+    }
+    header {
+      background: #3a86ff;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
+    .container {
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 1.5rem;
+      background: white;
+      border-radius: 10px;
+    }
+    .step {
+      background: #d0e2ff;
+      border-left: 6px solid #3a86ff;
+      margin-bottom: 1.5rem;
+      padding: 1rem;
+      border-radius: 6px;
+    }
+    textarea {
+      width: 100%;
+      height: 140px;
+      font-family: inherit;
+      padding: 1rem;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      resize: vertical;
+      margin-top: 10px;
+    }
+    button {
+      background: #3a86ff;
+      color: white;
+      padding: 0.6rem 1rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 1rem;
+    }
+    button:hover {
+      background: #1f5fc4;
+    }
+    .popup {
+      display: none;
+      position: fixed;
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.3);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 999;
+    }
+    .popup.show {
+      display: block;
+    }
+    .close-btn {
+      background: red;
+      margin-top: 1rem;
+    }
+    .techai-tip {
+      background: #dbe9ff;
+      border-left: 4px solid #3a86ff;
+      font-style: italic;
+      padding: 0.7rem;
+      margin: 1rem 0;
+      color: #154c9c;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🤖 Learn Robotics</h1>
+    <p>Discover robots and design your own ideas! Earn XP & a Robotics certificate.</p>
+  </header>
+  <div class="container">
+    <div class="step">
+      <h3>Step 1: What is a Robot?</h3>
+      <p>In your own words, explain what a robot is and what robots can do.</p>
+      <textarea id="robotDefinition" placeholder="Write your explanation here..."></textarea>
+    </div>
+    <div class="step">
+      <h3>Step 2: Design Your Robot</h3>
+      <p>Draw or describe a robot you would create. What would it do? How would it help people or the environment?</p>
+      <textarea id="robotDesign" placeholder="Describe your robot design..."></textarea>
+    </div>
+    <div class="techai-tip">🐧 TechAI says: Robots are machines that can do tasks automatically. Think about useful tasks your robot could perform!</div>
+    <button onclick="completeRoboticsLesson()">✅ Finish Lesson & Earn XP</button>
+  </div>
+  <div class="popup" id="popup">
+    <h2>🎉 Well Done!</h2>
+    <p>You earned <strong>100 XP</strong> and unlocked your Robotics Certificate!</p>
+    <p><a href="certificate-robotics.pdf" target="_blank">Download Certificate (PDF)</a></p>
+    <button class="close-btn" onclick="closePopup()">Close</button>
+  </div>
+  <script>
+    function completeRoboticsLesson() {
+      const definition = document.getElementById('robotDefinition').value.trim();
+      const design = document.getElementById('robotDesign').value.trim();
+      if (definition.length < 10 || design.length < 10) {
+        alert('Please answer both steps with more detail.');
+        return;
+      }
+      document.getElementById('popup').classList.add('show');
+    }
+    function closePopup() {
+      document.getElementById('popup').classList.remove('show');
+    }
+  </script>
+</body>
+</html>

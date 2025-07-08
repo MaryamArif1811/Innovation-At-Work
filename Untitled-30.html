@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Scratch Lesson | Innovation at Work</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      background: #fff7e6;
+    }
+    header {
+      background: #f7941e;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+    }
+    .container {
+      max-width: 900px;
+      margin: 2rem auto;
+      background: white;
+      padding: 1.5rem;
+      border-radius: 10px;
+    }
+    .step {
+      background: #fff2d5;
+      border-left: 5px solid #f7941e;
+      padding: 1rem;
+      border-radius: 5px;
+      margin-bottom: 1.5rem;
+    }
+    a.button {
+      display: inline-block;
+      padding: 0.7rem 1.2rem;
+      background: #f7941e;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      margin-top: 1rem;
+    }
+    a.button:hover {
+      background: #e67e00;
+    }
+    .techai-tip {
+      font-style: italic;
+      color: #663c00;
+      background: #fff6e0;
+      padding: 0.8rem;
+      border-left: 4px solid #f7941e;
+      margin: 1rem 0;
+    }
+    .popup {
+      display: none;
+      position: fixed;
+      background: white;
+      padding: 2rem;
+      box-shadow: 0 0 20px rgba(0,0,0,0.3);
+      border-radius: 8px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 100;
+    }
+    .popup.show {
+      display: block;
+    }
+    .close-btn {
+      background: red;
+      margin-top: 1rem;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🐱 Learn Scratch</h1>
+    <p>Create animations, games & stories — then earn XP & a Scratch Certificate!</p>
+  </header>
+  <div class="container">
+    <div class="step">
+      <h3>Step 1: Visit Scratch</h3>
+      <p>Go to Scratch and try creating a simple animation or game using blocks!</p>
+      <a class="button" href="https://scratch.mit.edu/projects/editor/" target="_blank">🔗 Open Scratch Editor</a>
+    </div>
+    <div class="step">
+      <h3>Step 2: Make Your Project</h3>
+      <p>Use blocks like "When Green Flag Clicked", "Move", or "Say Hello". Make something fun!</p>
+    </div>
+    <div class="step">
+      <h3>Step 3: Share It (Optional)</h3>
+      <p>If you’re logged into Scratch, you can share your project and copy the link to show others!</p>
+    </div>
+    <div class="techai-tip">🐧 TechAI says: Scratch helps you learn logic, creativity, and coding — all by dragging colorful blocks!</div>
+    <button onclick="completeScratch()">✅ Finish Lesson & Earn XP</button>
+  </div>
+  <div class="popup" id="congratsPopup">
+    <h2>🎉 Amazing Work!</h2>
+    <p>You earned <strong>100 XP</strong> and unlocked your Scratch Certificate!</p>
+    <p><a href="certificates/certificate-scratch.pdf" target="_blank">Download Certificate (PDF)</a></p>
+    <button class="close-btn" onclick="closePopup()">Close</button>
+  </div>
+  <script>
+    function completeScratch() {
+      document.getElementById("congratsPopup").classList.add("show");
+    }
+    function closePopup() {
+      document.getElementById("congratsPopup").classList.remove("show");
+    }
+  </script>
+</body>
+</html>

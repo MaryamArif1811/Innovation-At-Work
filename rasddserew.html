@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Python Lesson | Innovation at Work</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <script src="https://cdn.jsdelivr.net/npm/skulpt@1.2.0/skulpt.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/skulpt@1.2.0/skulpt-stdlib.js"></script>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f0f8ff;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background: #306998;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
+    .container {
+      max-width: 900px;
+      margin: 2rem auto;
+      background: white;
+      padding: 1rem 2rem;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    textarea {
+      width: 100%;
+      height: 150px;
+      font-family: monospace;
+      padding: 1rem;
+      margin-top: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      resize: vertical;
+    }
+    button {
+      background: #306998;
+      color: white;
+      padding: 0.6rem 1.2rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    button:hover {
+      background: #264d73;
+    }
+    .techai-tip {
+      font-style: italic;
+      color: #444;
+      background: #e0ebf9;
+      padding: 0.7rem;
+      border-left: 4px solid #306998;
+      margin: 1rem 0;
+    }
+    pre.output {
+      background: #222;
+      color: #eee;
+      padding: 1rem;
+      border-radius: 5px;
+      height: 150px;
+      overflow-y: auto;
+      font-family: monospace;
+      white-space: pre-wrap;
+      margin-top: 10px;
+    }
+    .popup {
+      display: none;
+      position: fixed;
+      background: white;
+      padding: 2rem;
+      box-shadow: 0 0 20px rgba(0,0,0,0.3);
+      border-radius: 8px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 100;
+      max-width: 90%;
+    }
+    .popup.show {
+      display: block;
+    }
+    .close-btn {
+      background: red;
+      margin-top: 1rem;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🐍 Learn Python</h1>
+    <p>Write Python code and see it run in your browser! Earn XP & a certificate.</p>
+  </header>
+  <div class="container">
+    <textarea id="pythonCode" placeholder="Type Python code here...">print("Hello, Python World!")</textarea>
+    <button onclick="runPython()">▶️ Run Python</button>
+    <pre id="output" class="output"></pre>
+    <div class="techai-tip">🐧 TechAI says: Python is great for beginners and powerful for pros!</div>
+    <button onclick="completeLesson()">✅ Finish Lesson & Earn XP</button>
+  </div>
+  <div class="popup" id="congratsPopup">
+    <h2>🎉 Well Done!</h2>
+    <p>You earned <strong>100 XP</strong> and unlocked your Python Certificate!</p>
+    <p><a href="certificates/certificate-python.pdf" target="_blank">Download Certificate (PDF)</a></p>
+    <button class="close-btn" onclick="closePopup()">Close</button>
+  </div>
+  <script>
+    function builtinRead(x) {
+      if (Sk.builtinFiles === undefined || Sk.builtinFiles["files"][x] === undefined)
+        throw "File not found: '" + x + "'";
+      return Sk.builtinFiles["files"][x];
+    }
+    function outf(text) {
+      let output = document.getElementById("output");
+      output.innerText += text;
+    }
+    function runPython() {
+      const prog = document.getElementById("pythonCode").value;
+      let output = document.getElementById("output");
+      output.innerText = "";
+      Sk.pre = "output";
+      Sk.configure({output:outf, read:builtinRead});
+      (Sk.TurtleGraphics || (Sk.TurtleGraphics = {})).target = 'output';
+      let myPromise = Sk.misceval.asyncToPromise(function() {
+        return Sk.importMainWithBody("<stdin>", false, prog, true);
+      });
+      myPromise.then(function(mod) {
+        // success
+      },
+      function(err) {
+        output.innerText = err.toString();
+      });
+    }
+    function completeLesson() {
+      document.getElementById("congratsPopup").classList.add("show");
+    }
+    function closePopup() {
+      document.getElementById("congratsPopup").classList.remove("show");
+    }
+  </script>
+</body>
+</html>

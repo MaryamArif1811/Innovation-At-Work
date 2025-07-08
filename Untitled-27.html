@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Coding Playground | Innovation at Work</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 1rem;
+      background: #f4f4f4;
+    }
+    header {
+      background-color: #0077cc;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
+    .lang-menu {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin: 1rem 0;
+    }
+    .lang-btn {
+      padding: 10px 20px;
+      background-color: #e6f0ff;
+      border: 2px solid #0077cc;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .lang-btn.active {
+      background-color: #0077cc;
+      color: white;
+    }
+    .lesson, .editor {
+      display: none;
+      background: white;
+      padding: 1rem;
+      border-radius: 10px;
+      margin: 1rem auto;
+      max-width: 800px;
+    }
+    textarea, iframe {
+      width: 100%;
+      height: 200px;
+      margin-top: 10px;
+      font-family: monospace;
+    }
+    button.run-btn {
+      background: #28a745;
+      color: white;
+      border: none;
+      padding: 10px;
+      margin-top: 10px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+<header>
+  <h1>👩‍💻 Coding Playground</h1>
+</header>
+<div class="lang-menu">
+  <button class="lang-btn" data-lang="html">HTML</button>
+  <button class="lang-btn" data-lang="css">CSS</button>
+  <button class="lang-btn" data-lang="js">JavaScript</button>
+  <button class="lang-btn" data-lang="python">Python</button>
+  <button class="lang-btn" data-lang="java">Java</button>
+  <button class="lang-btn" data-lang="cpp">C++</button>
+  <button class="lang-btn" data-lang="cs">C#</button>
+  <button class="lang-btn" data-lang="sql">SQL</button>
+  <button class="lang-btn" data-lang="php">PHP</button>
+  <button class="lang-btn" data-lang="r">R</button>
+  <button class="lang-btn" data-lang="ruby">Ruby</button>
+  <button class="lang-btn" data-lang="kotlin">Kotlin</button>
+  <button class="lang-btn" data-lang="swift">Swift</button>
+</div>
+<!-- HTML Playground -->
+<div class="lesson" id="lesson-html">
+  <h2>HTML Beginner Lesson</h2>
+  <p>HTML is used to structure content on the web. Here's a simple example:</p>
+  <textarea id="htmlCode"><!DOCTYPE html>
+<html>
+  <body>
+    <h1>Hello from Innovation at Work!</h1>
+    <p>This is a simple webpage.</p>
+  </body>
+</html></textarea>
+  <button class="run-btn" onclick="runHTML()">Run</button>
+  <iframe id="htmlOutput"></iframe>
+</div>
+<!-- CSS Playground -->
+<div class="lesson" id="lesson-css">
+  <h2>CSS Beginner Lesson</h2>
+  <p>CSS is used to style HTML content.</p>
+  <textarea id="cssCode">body {
+  background-color: lightblue;
+  font-family: Arial;
+}
+h1 {
+  color: white;
+  background: navy;
+  padding: 10px;
+}</textarea>
+  <button class="run-btn" onclick="runCSS()">Run</button>
+  <iframe id="cssOutput"></iframe>
+</div>
+<!-- JavaScript Playground -->
+<div class="lesson" id="lesson-js">
+  <h2>JavaScript Beginner Lesson</h2>
+  <p>JavaScript adds interactivity to your website.</p>
+  <textarea id="jsCode">document.body.innerHTML = "<h1>Hello from JavaScript!</h1>";</textarea>
+  <button class="run-btn" onclick="runJS()">Run</button>
+  <iframe id="jsOutput"></iframe>
+</div>
+<!-- Placeholder Lessons -->
+<div class="lesson" id="lesson-python"><h2>Python</h2><p>Coming soon: Learn Python basics and logic building.</p></div>
+<div class="lesson" id="lesson-java"><h2>Java</h2><p>Coming soon: Learn about classes and objects in Java.</p></div>
+<div class="lesson" id="lesson-cpp"><h2>C++</h2><p>Coming soon: Intro to C++ syntax and logic.</p></div>
+<div class="lesson" id="lesson-cs"><h2>C#</h2><p>Coming soon: Use C# in apps and games!</p></div>
+<div class="lesson" id="lesson-sql"><h2>SQL</h2><p>Coming soon: Learn to store and fetch data using SQL.</p></div>
+<div class="lesson" id="lesson-php"><h2>PHP</h2><p>Coming soon: Build dynamic websites with PHP.</p></div>
+<div class="lesson" id="lesson-r"><h2>R</h2><p>Coming soon: Data science lessons in R.</p></div>
+<div class="lesson" id="lesson-ruby"><h2>Ruby</h2><p>Coming soon: Learn Ruby's friendly syntax.</p></div>
+<div class="lesson" id="lesson-kotlin"><h2>Kotlin</h2><p>Coming soon: Android app coding with Kotlin.</p></div>
+<div class="lesson" id="lesson-swift"><h2>Swift</h2><p>Coming soon: Build iOS apps using Swift.</p></div>
+<script>
+  const buttons = document.querySelectorAll('.lang-btn');
+  const lessons = document.querySelectorAll('.lesson');
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      lessons.forEach(l => l.style.display = 'none');
+      buttons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('lesson-' + btn.dataset.lang).style.display = 'block';
+    });
+  });
+  function runHTML() {
+    const code = document.getElementById('htmlCode').value;
+    const iframe = document.getElementById('htmlOutput');
+    iframe.srcdoc = code;
+  }
+  function runCSS() {
+    const code = document.getElementById('cssCode').value;
+    const iframe = document.getElementById('cssOutput');
+    iframe.srcdoc = `<style>${code}</style><h1>Styled with CSS!</h1>`;
+  }
+  function runJS() {
+    const code = document.getElementById('jsCode').value;
+    const iframe = document.getElementById('jsOutput');
+    iframe.srcdoc = `<script>${code}<\/script>`;
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,136 @@
+<!-- Add below your XP info -->
+<div id="badges" style="margin-bottom:1rem;"></div>
+<h2>Generate Certificate</h2>
+<form id="certForm" style="margin-bottom:2rem;">
+  <label>
+    Your Name: 
+    <input type="text" id="certName" required placeholder="Enter your name" />
+  </label><br/><br/>
+  <label>
+    Select Event:
+    <select id="certEvent" required>
+      <option value="">--Select Event--</option>
+      <option value="Innovation Leader">Innovation Leader</option>
+      <option value="Coding Challenge">Coding Challenge</option>
+      <option value="Best Presentation">Best Presentation</option>
+    </select>
+  </label><br/><br/>
+  <button type="submit">Create Certificate</button>
+</form>
+<div id="certificatePreview" style="border:2px solid #0077cc; padding:1rem; display:none;">
+  <h3>Certificate Preview</h3>
+  <p><strong>Name:</strong> <span id="certPreviewName"></span></p>
+  <p><strong>Event:</strong> <span id="certPreviewEvent"></span></p>
+  <p>Congratulations on your achievement!</p>
+  <button id="downloadCert">Download Certificate</button>
+</div>
+<hr />
+<footer style="text-align:center; padding:1rem; margin-top:2rem; border-top:1px solid #ddd;">
+  <p>Explore block coding:</p>
+  <a href="https://scratch.mit.edu" target="_blank">Scratch</a> | 
+  <a href="https://pictoblox.ai" target="_blank">Pictoblox</a> | 
+  <a href="https://developers.google.com/blockly" target="_blank">Blockly</a>
+  <br/><br/>
+  <p>Follow my Scratch: <a href="https://scratch.mit.edu/users/MaryamArif_1811/" target="_blank">MaryamArif_1811</a></p>
+  <img src="images/lets_innovate_together.png" alt="Let's Innovate Together" style="width:200px; margin-top:1rem;" />
+</footer>
+<script>
+// BADGES system
+const badgesDiv = document.getElementById('badges');
+const badgeMilestones = [50, 100, 200, 500];
+function updateBadges() {
+  badgesDiv.innerHTML = '<strong>Badges earned:</strong> ';
+  const earned = badgeMilestones.filter(m => (user.xp || 0) >= m);
+  if (earned.length === 0) {
+    badgesDiv.innerHTML += 'No badges yet.';
+    return;
+  }
+  earned.forEach(xp => {
+    badgesDiv.innerHTML += `<span style="background:#0077cc; color:white; padding:4px 8px; border-radius:6px; margin:0 4px;">${xp} XP Badge</span>`;
+  });
+}
+updateBadges();
+// CERTIFICATE generation
+const certForm = document.getElementById('certForm');
+const certPreview = document.getElementById('certificatePreview');
+const certPreviewName = document.getElementById('certPreviewName');
+const certPreviewEvent = document.getElementById('certPreviewEvent');
+const downloadBtn = document.getElementById('downloadCert');
+certForm.addEventListener('submit', e => {
+  e.preventDefault();
+  const name = document.getElementById('certName').value.trim();
+  const event = document.getElementById('certEvent').value;
+  if (!name || !event) {
+    alert('Please fill out all fields.');
+    return;
+  }
+  certPreviewName.textContent = name;
+  certPreviewEvent.textContent = event;
+  certPreview.style.display = 'block';
+});
+// Download certificate as text image (simple)
+downloadBtn.addEventListener('click', () => {
+  const name = certPreviewName.textContent;
+  const event = certPreviewEvent.textContent;
+  const text = `Certificate of Achievement\n\nThis certifies that ${name}\nhas completed the event:\n${event}\n\nCongratulations!`;
+  // Create a simple text file download
+  const blob = new Blob([text], {type: 'text/plain'});
+  const link = document.createElement('a');
+  link.download = `Certificate_${name.replace(/\s+/g,'_')}_${event.replace(/\s+/g,'_')}.txt`;
+  link.href = URL.createObjectURL(blob);
+  link.click();
+});
+// MULTILINGUAL toggle example
+let lang = 'en'; // default English
+const translations = {
+  en: {
+    'Coding Playground & Lessons': 'Coding Playground & Lessons',
+    'Choose a language:': 'Choose a language:',
+    'Generate Certificate': 'Generate Certificate',
+    'Your Name:': 'Your Name:',
+    'Select Event:': 'Select Event:',
+    'Create Certificate': 'Create Certificate',
+    'Badges earned:': 'Badges earned:',
+    'No badges yet.': 'No badges yet.',
+    'Explore block coding:': 'Explore block coding:',
+    'Follow my Scratch:': 'Follow my Scratch:'
+  },
+  ar: {
+    'Coding Playground & Lessons': 'ملعب ودروس البرمجة',
+    'Choose a language:': 'اختر لغة:',
+    'Generate Certificate': 'إنشاء شهادة',
+    'Your Name:': 'اسمك:',
+    'Select Event:': 'اختر الحدث:',
+    'Create Certificate': 'إنشاء شهادة',
+    'Badges earned:': 'الشارات المكتسبة:',
+    'No badges yet.': 'لم تحصل على أي شارات بعد.',
+    'Explore block coding:': 'استكشف البرمجة البلوكية:',
+    'Follow my Scratch:': 'تابع حسابي على Scratch:'
+  }
+};
+// Simple language toggle button (add to header or wherever)
+const langToggle = document.createElement('button');
+langToggle.textContent = 'العربية';
+langToggle.style.cssText = 'position:fixed;top:10px;right:10px;padding:5px 10px;background:#0077cc;color:#fff;border:none;border-radius:5px;cursor:pointer;z-index:9999;';
+document.body.appendChild(langToggle);
+langToggle.addEventListener('click', () => {
+  lang = lang === 'en' ? 'ar' : 'en';
+  updateTexts();
+  langToggle.textContent = lang === 'en' ? 'العربية' : 'English';
+});
+function updateTexts() {
+  document.querySelector('header h1').textContent = translations[lang]['Coding Playground & Lessons'];
+  document.querySelector('label[for="languageSelect"]').textContent = translations[lang]['Choose a language:'];
+  document.querySelector('h2').textContent = translations[lang]['Generate Certificate'];
+  document.querySelector('label[for="certName"]').firstChild.textContent = translations[lang]['Your Name:'] + ' ';
+  document.querySelector('label[for="certEvent"]').firstChild.textContent = translations[lang]['Select Event:'] + ' ';
+  document.querySelector('#certForm button').textContent = translations[lang]['Create Certificate'];
+  badgesDiv.firstChild.textContent = translations[lang]['Badges earned:'];
+  if (badgesDiv.textContent.includes('No badges yet.')) {
+    badgesDiv.textContent = translations[lang]['No badges yet.'];
+  }
+  document.querySelector('footer p').textContent = translations[lang]['Explore block coding:'];
+  document.querySelector('footer p:nth-of-type(2)').innerHTML = `${translations[lang]['Follow my Scratch:']} <a href="https://scratch.mit.edu/users/MaryamArif_1811/" target="_blank">MaryamArif_1811</a>`;
+}
+updateTexts();
+</script>

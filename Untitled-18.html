@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Login & Register</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 400px; margin: auto; padding: 1em; }
+    form { margin-bottom: 2em; }
+    input, button { width: 100%; padding: 0.5em; margin: 0.3em 0; }
+    #registerMsg, #loginMsg { color: red; margin-top: 0.5em; min-height: 1.2em; }
+  </style>
+</head>
+<body>
+  <h1>Register</h1>
+  <form id="registerForm">
+    <input type="text" id="username" placeholder="Enter username" required minlength="3" />
+    <button type="submit">Register</button>
+    <div id="registerMsg"></div>
+  </form>
+  <h1>Login</h1>
+  <form id="loginForm">
+    <input type="text" id="loginUsername" placeholder="Username" required />
+    <input type="password" id="loginPassword" placeholder="Secret Code" required />
+    <button type="submit">Login</button>
+    <div id="loginMsg"></div>
+  </form>
+  <script src="js/login.js"></script>
+</body>
+</html>

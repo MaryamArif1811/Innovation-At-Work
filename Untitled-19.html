@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8" />
+  <title>Innovation at Work - Activities</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 700px;
+      margin: 2rem auto;
+      padding: 1rem;
+      background: #f9fbfd;
+      color: #222;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+    }
+    h1 {
+      margin: 0;
+      color: #0077cc;
+    }
+    button, input[type=submit] {
+      background: #0077cc;
+      border: none;
+      color: white;
+      padding: 0.5em 1.2em;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+      margin-top: 0.5rem;
+    }
+    button:hover, input[type=submit]:hover {
+      background: #005fa3;
+    }
+    section {
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.1);
+      padding: 1rem 1.2rem;
+      margin-bottom: 1.5rem;
+    }
+    label {
+      font-weight: bold;
+      display: block;
+      margin-top: 0.8rem;
+    }
+    textarea {
+      width: 100%;
+      min-height: 80px;
+      resize: vertical;
+      margin-top: 0.3rem;
+      font-size: 1rem;
+      padding: 0.5em;
+    }
+    select {
+      margin-top: 0.3rem;
+      padding: 0.4em;
+      font-size: 1rem;
+      border-radius: 5px;
+      border: 1px solid #aaa;
+    }
+    #xpTotal {
+      font-weight: bold;
+      font-size: 1.2rem;
+      margin-top: 1rem;
+      color: #0077cc;
+    }
+    nav a {
+      margin-right: 1rem;
+      text-decoration: none;
+      color: #0077cc;
+      font-weight: bold;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+<header>
+  <h1>Innovation Activities</h1>
+  <nav>
+    <a href="index.html">Dashboard</a>
+    <a href="login.html" id="logoutLink">Logout</a>
+  </nav>
+</header>
+<div id="welcomeMsg"></div>
+<form id="activitiesForm">
+  <section>
+    <label for="activity1">1. Create a poster or presentation about innovation (describe what you did):</label>
+    <textarea id="activity1" name="activity1" required></textarea>
+    <label for="rating1">Your rating:</label>
+    <select id="rating1" name="rating1" required>
+      <option value="">Select rating</option>
+      <option value="100">Excellent (100 XP)</option>
+      <option value="70">Amazing (70 XP)</option>
+      <option value="50">Very Good (50 XP)</option>
+      <option value="30">Good (30 XP)</option>
+      <option value="20">Okay (20 XP)</option>
+    </select>
+    <label><input type="checkbox" id="creative1" name="creative1" /> Creativity bonus (+20 XP)</label>
+  </section>
+  <section>
+    <label for="activity2">2. If you were the innovation leader for one day, what would you do?</label>
+    <textarea id="activity2" name="activity2" required></textarea>
+    <label for="rating2">Your rating:</label>
+    <select id="rating2" name="rating2" required>
+      <option value="">Select rating</option>
+      <option value="100">Excellent (100 XP)</option>
+      <option value="70">Amazing (70 XP)</option>
+      <option value="50">Very Good (50 XP)</option>
+      <option value="30">Good (30 XP)</option>
+      <option value="20">Okay (20 XP)</option>
+    </select>
+    <label><input type="checkbox" id="creative2" name="creative2" /> Creativity bonus (+20 XP)</label>
+  </section>
+  <section>
+    <label for="activity3">3. Write a paragraph about what innovation means to you:</label>
+    <textarea id="activity3" name="activity3" required></textarea>
+    <label for="rating3">Your rating:</label>
+    <select id="rating3" name="rating3" required>
+      <option value="">Select rating</option>
+      <option value="100">Excellent (100 XP)</option>
+      <option value="70">Amazing (70 XP)</option>
+      <option value="50">Very Good (50 XP)</option>
+      <option value="30">Good (30 XP)</option>
+      <option value="20">Okay (20 XP)</option>
+    </select>
+    <label><input type="checkbox" id="creative3" name="creative3" /> Creativity bonus (+20 XP)</label>
+  </section>
+  <section>
+    <label for="activity4">4. Draw an invention that helps the environment and describe it:</label>
+    <textarea id="activity4" name="activity4" placeholder="Describe your drawing here" required></textarea>
+    <label for="rating4">Your rating:</label>
+    <select id="rating4" name="rating4" required>
+      <option value="">Select rating</option>
+      <option value="100">Excellent (100 XP)</option>
+      <option value="70">Amazing (70 XP)</option>
+      <option value="50">Very Good (50 XP)</option>
+      <option value="30">Good (30 XP)</option>
+      <option value="20">Okay (20 XP)</option>
+    </select>
+    <label><input type="checkbox" id="creative4" name="creative4" /> Creativity bonus (+20 XP)</label>
+  </section>
+  <section>
+    <label for="activity5">5. Innovation as an acronym — what would the full form be?</label>
+    <textarea id="activity5" name="activity5" required></textarea>
+    <label for="rating5">Your rating:</label>
+    <select id="rating5" name="rating5" required>
+      <option value="">Select rating</option>
+      <option value="100">Excellent (100 XP)</option>
+      <option value="70">Amazing (70 XP)</option>
+      <option value="50">Very Good (50 XP)</option>
+      <option value="30">Good (30 XP)</option>
+      <option value="20">Okay (20 XP)</option>
+    </select>
+    <label><input type="checkbox" id="creative5" name="creative5" /> Creativity bonus (+20 XP)</label>
+  </section>
+  <section>
+    <label for="activity6">6. Imagine you had to use code for an invention — what would it be? (You can choose any language.)</label>
+    <textarea id="activity6" name="activity6" required></textarea>
+    <label for="rating6">Your rating:</label>
+    <select id="rating6" name="rating6" required>
+      <option value="">Select rating</option>
+      <option value="100">Excellent (100 XP)</option>
+      <option value="70">Amazing (70 XP)</option>
+      <option value="50">Very Good (50 XP)</option>
+      <option value="30">Good (30 XP)</option>
+      <option value="20">Okay (20 XP)</option>
+    </select>
+    <label><input type="checkbox" id="creative6" name="creative6" /> Creativity bonus (+20 XP)</label>
+  </section>
+  <input type="submit" value="Submit Activities" />
+</form>
+<p id="xpTotal">Your total XP: 0</p>
+<script>
+  // Check if user logged in
+  const currentUser = sessionStorage.getItem('currentUser');
+  if (!currentUser) {
+    window.location.href = 'login.html';
+  }
+  // Load user data
+  let users = JSON.parse(localStorage.getItem('users')) || {};
+  let user = users[currentUser];
+  if (!user) {
+    alert('User data not found!');
+    window.location.href = 'login.html';
+  }
+  // Show welcome
+  const welcomeMsg = document.getElementById('welcomeMsg');
+  welcomeMsg.textContent = `Hello, ${currentUser}! Complete these innovation activities to earn XP.`;
+  // Show total XP
+  const xpTotal = document.getElementById('xpTotal');
+  xpTotal.textContent = `Your total XP: ${user.xp || 0}`;
+  const form = document.getElementById('activitiesForm');
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    let totalEarnedXP = 0;
+    for(let i=1; i<=6; i++) {
+      const ratingVal = parseInt(document.getElementById(`rating${i}`).value);
+      const creativeBonus = document.getElementById(`creative${i}`).checked ? 20 : 0;
+      if (!ratingVal) {
+        alert(`Please select a rating for activity ${i}`);
+        return;
+      }
+      const earnedXP = ratingVal + creativeBonus;
+      totalEarnedXP += earnedXP;
+    }
+    // Add XP to user
+    user.xp = (user.xp || 0) + totalEarnedXP;
+    // Save back
+    users[currentUser] = user;
+    localStorage.setItem('users', JSON.stringify(users));
+    xpTotal.textContent = `Your total XP: ${user.xp}`;
+    alert(`Great job! You earned ${totalEarnedXP} XP from these activities.`);
+    form.reset();
+  });
+</script>
+</body>
+</html>

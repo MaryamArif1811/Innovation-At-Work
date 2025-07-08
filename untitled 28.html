@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Learn to Code | Innovation at Work</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f2f7fc;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: #0077cc;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
+    .container {
+      max-width: 1000px;
+      margin: 2rem auto;
+      padding: 1rem;
+    }
+    .lesson-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+    .card {
+      background: white;
+      border-radius: 10px;
+      padding: 1rem;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+      transition: transform 0.2s;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+    }
+    .card h3 {
+      margin-top: 0;
+      color: #0077cc;
+    }
+    .start-btn {
+      margin-top: 10px;
+      padding: 0.4rem 1rem;
+      border: none;
+      background-color: #00bb66;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .start-btn:hover {
+      background-color: #009e57;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>👨‍💻 Learn to Code</h1>
+    <p>Select a language to begin your journey!</p>
+  </header>
+  <div class="container">
+    <div class="lesson-grid" id="lessonCards"></div>
+  </div>
+  <script>
+    const languages = [
+      { name: "HTML", description: "Build the structure of websites", xp: 100 },
+      { name: "CSS", description: "Style your websites beautifully", xp: 100 },
+      { name: "JavaScript", description: "Make your websites interactive", xp: 150 },
+      { name: "Python", description: "Powerful & easy language for all tasks", xp: 150 },
+      { name: "Java", description: "Used in Android apps & big systems", xp: 150 },
+      { name: "C#", description: "Used in games and Windows software", xp: 150 },
+      { name: "C++", description: "Great for powerful systems & games", xp: 150 },
+      { name: "PHP", description: "Popular for websites & forms", xp: 100 },
+      { name: "Swift", description: "Build iOS apps for Apple devices", xp: 100 },
+      { name: "Kotlin", description: "Modern language for Android apps", xp: 100 },
+      { name: "SQL", description: "Manage and search big databases", xp: 100 },
+      { name: "Ruby", description: "Simple and elegant for fast coding", xp: 100 },
+      { name: "R", description: "Great for statistics & data science", xp: 100 },
+      { name: "Scratch", description: "Drag-and-drop coding for kids", xp: 50 },
+      { name: "Pictoblox", description: "Block coding with AI & robots", xp: 50 },
+      { name: "Blockly", description: "Custom block coding toolkit", xp: 50 }
+    ];
+    const cardContainer = document.getElementById('lessonCards');
+    languages.forEach(lang => {
+      const card = document.createElement('div');
+      card.className = 'card';
+      card.innerHTML = `
+        <h3>${lang.name}</h3>
+        <p>${lang.description}</p>
+        <p>🎁 Earn <strong>${lang.xp} XP</strong></p>
+        <button class="start-btn" onclick="startLesson('${lang.name}', ${lang.xp})">Start Lesson</button>
+      `;
+      cardContainer.appendChild(card);
+    });
+    function startLesson(language, xp) {
+      alert(`🎉 Great choice!\nYou selected ${language}.\nTechAI will guide you step-by-step!\nXP: ${xp}`);
+      // Future: redirect to actual lesson page or open modal
+    }
+  </script>
+</body>
+</html>

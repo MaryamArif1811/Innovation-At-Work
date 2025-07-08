@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Ruby Lesson | Innovation at Work</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #fff8f0;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background: #e0115f;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
+    .container {
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 1rem;
+      background: white;
+      border-radius: 8px;
+    }
+    .step {
+      background: #ffe8f0;
+      border-left: 5px solid #e0115f;
+      margin-bottom: 1rem;
+      padding: 1rem;
+      border-radius: 5px;
+    }
+    textarea {
+      width: 100%;
+      height: 180px;
+      font-family: monospace;
+      padding: 1rem;
+      margin-top: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    button {
+      background: #e0115f;
+      color: white;
+      padding: 0.6rem 1rem;
+      border: none;
+      border-radius: 5px;
+      margin-top: 1rem;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #b80e4d;
+    }
+    .techai-tip {
+      font-style: italic;
+      color: #333;
+      background: #fff2f8;
+      padding: 0.7rem;
+      border-left: 4px solid #e0115f;
+      margin: 1rem 0;
+    }
+    .popup {
+      display: none;
+      position: fixed;
+      background: white;
+      padding: 2rem;
+      box-shadow: 0 0 20px rgba(0,0,0,0.3);
+      border-radius: 8px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 100;
+    }
+    .popup.show {
+      display: block;
+    }
+    .close-btn {
+      background: red;
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>💎 Learn Ruby</h1>
+    <p>Explore a friendly programming language! Earn XP and a Ruby certificate.</p>
+  </header>
+  <div class="container">
+    <div class="step">
+      <h3>Step 1: Hello Ruby!</h3>
+      <p>This is a basic Ruby script:</p>
+      <textarea readonly>
+puts "Hello, Ruby World!"
+      </textarea>
+    </div>
+    <div class="step">
+      <h3>Step 2: Try Ruby Online</h3>
+      <p>Use an online Ruby editor like:</p>
+      <a href="https://replit.com/languages/ruby" target="_blank">
+        <button>▶️ Try Ruby on Replit</button>
+      </a>
+    </div>
+    <div class="techai-tip">
+      🐧 TechAI says: Ruby is known for its simplicity and is used to make websites using Ruby on Rails!
+    </div>
+    <button onclick="completeLesson()">✅ Finish Lesson & Earn XP</button>
+  </div>
+  <div class="popup" id="congratsPopup">
+    <h2>🎉 Good Job!</h2>
+    <p>You earned <strong>100 XP</strong> and unlocked your Ruby Certificate!</p>
+    <p><a href="certificates/certificate-ruby.pdf" target="_blank">Download Certificate (PDF)</a></p>
+    <button class="close-btn" onclick="closePopup()">Close</button>
+  </div>
+  <script>
+    function completeLesson() {
+      document.getElementById("congratsPopup").classList.add("show");
+    }
+    function closePopup() {
+      document.getElementById("congratsPopup").classList.remove("show");
+    }
+  </script>
+</body>
+</html>

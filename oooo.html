@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Playground | Innovation at Work</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      background: #eef3f8;
+    }
+    header {
+      background: #0077cc;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
+    .container {
+      display: flex;
+      flex-direction: column;
+      padding: 1rem;
+    }
+    textarea {
+      width: 100%;
+      height: 200px;
+      margin-bottom: 10px;
+      padding: 0.7rem;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-family: monospace;
+    }
+    iframe {
+      width: 100%;
+      height: 300px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      background: white;
+    }
+    .run-btn {
+      background: #00aa55;
+      color: white;
+      padding: 0.5rem 1rem;
+      border: none;
+      margin-top: 10px;
+      cursor: pointer;
+      border-radius: 5px;
+      align-self: flex-start;
+    }
+    .run-btn:hover {
+      background: #008844;
+    }
+    footer {
+      margin-top: 1rem;
+      font-size: 0.85rem;
+      text-align: center;
+      color: gray;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🛠️ Code Playground</h1>
+    <p>Test your code live with TechAI!</p>
+  </header>
+  <div class="container">
+    <h3>HTML</h3>
+    <textarea id="htmlCode" placeholder="Write HTML here..."></textarea>
+    <h3>CSS</h3>
+    <textarea id="cssCode" placeholder="Write CSS here..."></textarea>
+    <h3>JavaScript</h3>
+    <textarea id="jsCode" placeholder="Write JavaScript here..."></textarea>
+    <button class="run-btn" onclick="runCode()">▶️ Run Code</button>
+    <h3>Live Preview</h3>
+    <iframe id="preview"></iframe>
+  </div>
+  <footer>
+    🌟 Playground by Innovation at Work | Coded with 💙
+  </footer>
+  <script>
+    function runCode() {
+      const html = document.getElementById("htmlCode").value;
+      const css = "<style>" + document.getElementById("cssCode").value + "</style>";
+      const js = "<script>" + document.getElementById("jsCode").value + "<\/script>";
+      const output = html + css + js;
+      const previewFrame = document.getElementById("preview");
+      const preview = previewFrame.contentDocument || previewFrame.contentWindow.document;
+      preview.open();
+      preview.write(output);
+      preview.close();
+    }
+  </script>
+</body>
+</html>

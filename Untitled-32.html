@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Kotlin Lesson | Innovation at Work</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f3f9ff;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background: #0095d5;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
+    .container {
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 1rem;
+      background: white;
+      border-radius: 8px;
+    }
+    .step {
+      background: #e1f4ff;
+      border-left: 5px solid #0095d5;
+      margin-bottom: 1rem;
+      padding: 1rem;
+      border-radius: 5px;
+    }
+    textarea {
+      width: 100%;
+      height: 150px;
+      font-family: monospace;
+      padding: 1rem;
+      margin-top: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    button {
+      background: #0095d5;
+      color: white;
+      padding: 0.6rem 1rem;
+      border: none;
+      border-radius: 5px;
+      margin-top: 1rem;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #007bb3;
+    }
+    .techai-tip {
+      font-style: italic;
+      background: #eefaff;
+      padding: 0.7rem;
+      border-left: 4px solid #66cfff;
+      margin-top: 1rem;
+    }
+    .popup {
+      display: none;
+      position: fixed;
+      background: white;
+      padding: 2rem;
+      box-shadow: 0 0 20px rgba(0,0,0,0.3);
+      border-radius: 8px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 100;
+    }
+    .popup.show {
+      display: block;
+    }
+    .close-btn {
+      background: red;
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>📱 Learn Kotlin</h1>
+    <p>Learn a language used to build Android apps! Finish this to earn XP & your certificate.</p>
+  </header>
+  <div class="container">
+    <div class="step">
+      <h3>Step 1: Understand Kotlin Code</h3>
+      <p>This code prints a greeting. You can’t run it here, but learn the syntax!</p>
+      <textarea readonly>
+fun main() {
+    val name = "Maryam"
+    println("Hello, $name! Welcome to Kotlin.")
+}
+      </textarea>
+      <div class="techai-tip">🐧 TechAI says: Kotlin is simple and powerful! It's used by Google and many apps you use daily.</div>
+    </div>
+    <button onclick="completeKotlinLesson()">✅ Finish Lesson & Earn XP</button>
+  </div>
+  <div class="popup" id="congratsPopup">
+    <h2>🎉 Great Work!</h2>
+    <p>You earned <strong>100 XP</strong> and unlocked your Kotlin Certificate!</p>
+    <p><a href="certificate-kotlin.pdf" target="_blank">Download Certificate (PDF)</a></p>
+    <button class="close-btn" onclick="closePopup()">Close</button>
+  </div>
+  <script>
+    function completeKotlinLesson() {
+      document.getElementById("congratsPopup").classList.add("show");
+    }
+    function closePopup() {
+      document.getElementById("congratsPopup").classList.remove("show");
+    }
+  </script>
+</body>
+</html>

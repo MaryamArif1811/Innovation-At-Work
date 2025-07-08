@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Innovation at Work</title>
+  <link rel="manifest" href="manifest.json" />
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f0f8ff;
+      color: #333;
+    }
+    header {
+      background: #0077cc;
+      color: white;
+      padding: 1.5rem;
+      text-align: center;
+    }
+    nav {
+      background: #eef;
+      padding: 1rem;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    nav a {
+      padding: 10px 20px;
+      background: white;
+      color: #0077cc;
+      border: 2px solid #0077cc;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+    nav a:hover {
+      background: #0077cc;
+      color: white;
+    }
+    #dashboard {
+      padding: 2rem;
+      text-align: center;
+    }
+    .card {
+      background: white;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      padding: 1rem;
+      margin: 1rem auto;
+      max-width: 400px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    .techai {
+      font-size: 1.2rem;
+      margin-top: 1rem;
+    }
+    .techai::before {
+      content: '🐧';
+      margin-right: 8px;
+    }
+  </style>
+</head>
+<body>
+<header>
+  <h1>Innovation at Work</h1>
+  <p>🌟 Learn. Create. Innovate. 🌟</p>
+</header>
+<nav>
+  <a href="playground.html">Playground</a>
+  <a href="activities.html">Innovation Activities</a>
+  <a href="certificates.html">Certificates</a>
+  <a href="leaderboard.html">Leaderboard</a>
+</nav>
+<div id="dashboard">
+  <div class="card">
+    <h2>Welcome, <span id="userName">Guest</span>!</h2>
+    <p>Level: <span id="userLevel">Novice</span></p>
+    <p>Total XP: <span id="userXP">0</span></p>
+    <p>Badges: <span id="userBadges">None</span></p>
+  </div>
+  <div class="card techai">
+    Hello! I'm TechAI your penguin buddy 🐧  
+    <br/>Let’s innovate together today!
+  </div>
+</div>
+<!-- Language Toggle -->
+<button id="langBtn" style="position:fixed;bottom:10px;right:10px;padding:8px 12px;background:#0077cc;color:white;border:none;border-radius:5px;cursor:pointer;">🌍 Language</button>
+<script>
+// Load user from session
+const user = JSON.parse(localStorage.getItem('users'))?.[sessionStorage.getItem('currentUser')] || { xp: 0, badges: [] };
+document.getElementById('userName').textContent = sessionStorage.getItem('currentUser') || 'Guest';
+document.getElementById('userXP').textContent = user.xp || 0;
+document.getElementById('userBadges').textContent = (user.badges || []).join(', ') || 'None';
+// Determine level
+const level = user.xp >= 500 ? 'Expert' : user.xp >= 300 ? 'Advanced' : user.xp >= 150 ? 'Intermediate' : user.xp >= 50 ? 'Beginner' : 'Novice';
+document.getElementById('userLevel').textContent = level;
+// Language support
+let lang = 'en';
+const translations = {
+  en: {
+    welcome: 'Welcome',
+    level: 'Level',
+    xp: 'Total XP',
+    badges: 'Badges',
+    greeting: "Hello! I'm TechAI your penguin buddy 🐧<br/>Let’s innovate together today!"
+  },
+  ar: {
+    welcome: 'مرحبًا',
+    level: 'المستوى',
+    xp: 'إجمالي النقاط',
+    badges: 'الشارات',
+    greeting: 'مرحبًا! أنا تِك إيه آي، بطريقك المبتكر 🐧<br/>لنبتكر معًا اليوم!'
+  }
+};
+document.getElementById('langBtn').addEventListener('click', () => {
+  lang = lang === 'en' ? 'ar' : 'en';
+  document.querySelector('h2').innerHTML = `${translations[lang].welcome}, <span id="userName">${sessionStorage.getItem('currentUser') || 'Guest'}</span>!`;
+  document.querySelector('#userLevel').textContent = level;
+  document.querySelector('p:nth-of-type(1)').innerHTML = `${translations[lang].level}: <span id="userLevel">${level}</span>`;
+  document.querySelector('p:nth-of-type(2)').innerHTML = `${translations[lang].xp}: <span id="userXP">${user.xp}</span>`;
+  document.querySelector('p:nth-of-type(3)').innerHTML = `${translations[lang].badges}: <span id="userBadges">${user.badges?.join(', ') || 'None'}</span>`;
+  document.querySelector('.techai').innerHTML = translations[lang].greeting;
+});
+</script>
+</body>
+</html>

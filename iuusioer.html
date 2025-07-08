@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Blockly Lesson | Innovation at Work</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://unpkg.com/blockly/blockly.min.js"></script>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #fff7e6;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background: #f4b41a;
+      color: #333;
+      padding: 1rem;
+      text-align: center;
+    }
+    .container {
+      max-width: 1000px;
+      margin: 2rem auto;
+      padding: 1rem;
+      background: white;
+      border-radius: 8px;
+    }
+    #blocklyDiv {
+      height: 480px;
+      width: 100%;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+    }
+    #codeArea {
+      margin-top: 1rem;
+      padding: 1rem;
+      background: #f9f9f9;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-family: monospace;
+      height: 150px;
+      overflow-y: auto;
+      white-space: pre-wrap;
+    }
+    button {
+      background: #f4b41a;
+      color: #333;
+      padding: 0.6rem 1.2rem;
+      border: none;
+      border-radius: 6px;
+      margin-top: 1rem;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    button:hover {
+      background: #d89b00;
+    }
+    .techai-tip {
+      font-style: italic;
+      color: #665200;
+      background: #fff3cc;
+      padding: 0.7rem;
+      border-left: 4px solid #d89b00;
+      margin: 1rem 0;
+    }
+    .popup {
+      display: none;
+      position: fixed;
+      background: white;
+      padding: 2rem;
+      box-shadow: 0 0 20px rgba(0,0,0,0.3);
+      border-radius: 8px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 100;
+    }
+    .popup.show {
+      display: block;
+    }
+    .close-btn {
+      background: #d89b00;
+      margin-top: 1rem;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🧩 Learn Blockly</h1>
+    <p>Drag and drop blocks to code! Complete this lesson to earn XP & your Blockly certificate.</p>
+  </header>
+  <div class="container">
+    <div id="blocklyDiv"></div>
+    <pre id="codeArea" readonly>// Your generated JavaScript code will appear here</pre>
+    <button onclick="runCode()">▶️ Run Code</button>
+    <button onclick="completeLesson()">✅ Finish Lesson & Earn XP</button>
+    <div class="techai-tip">🐧 TechAI says: Blockly lets you code by snapping blocks together — perfect for beginners!</div>
+  </div>
+  <div class="popup" id="congratsPopup">
+    <h2>🎉 Well Done!</h2>
+    <p>You earned <strong>100 XP</strong> and unlocked your Blockly Certificate!</p>
+    <p><a href="certificate-blockly.pdf" target="_blank">Download Certificate (PDF)</a></p>
+    <button class="close-btn" onclick="closePopup()">Close</button>
+  </div>
+  <script>
+    // Inject Blockly workspace
+    const workspace = Blockly.inject('blocklyDiv', {
+      toolbox: `<xml xmlns="https://developers.google.com/blockly/xml" id="toolbox" style="display: none">
+        <block type="controls_if"></block>
+        <block type="logic_compare"></block>
+        <block type="math_number"></block>
+        <block type="math_arithmetic"></block>
+        <block type="text"></block>
+        <block type="text_print"></block>
+        <block type="variables_set"></block>
+        <block type="variables_get"></block>
+      </xml>`
+    });
+    const codeArea = document.getElementById('codeArea');
+    function updateCode() {
+      const code = Blockly.JavaScript.workspaceToCode(workspace);
+      codeArea.textContent = code || '// Your generated JavaScript code will appear here';
+    }
+    workspace.addChangeListener(updateCode);
+    function runCode() {
+      const code = Blockly.JavaScript.workspaceToCode(workspace);
+      try {
+        new Function(code)();
+      } catch (e) {
+        alert('Error: ' + e.message);
+      }
+    }
+    function completeLesson() {
+      document.getElementById('congratsPopup').classList.add('show');
+    }
+    function closePopup() {
+      document.getElementById('congratsPopup').classList.remove('show');
+    }
+  </script>
+</body>
+</html>

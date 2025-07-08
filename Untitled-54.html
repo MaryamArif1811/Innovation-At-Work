@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Java Lesson | Innovation at Work</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #fff8e1;
+      margin: 0; padding: 0;
+    }
+    header {
+      background: #f57c00;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
+    .container {
+      max-width: 900px;
+      margin: 2rem auto;
+      background: white;
+      padding: 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(245, 124, 0, 0.3);
+    }
+    .step {
+      background: #fff3e0;
+      border-left: 6px solid #f57c00;
+      margin-bottom: 1.5rem;
+      padding: 1rem;
+      border-radius: 6px;
+    }
+    textarea {
+      width: 100%;
+      height: 130px;
+      font-family: monospace;
+      padding: 1rem;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      resize: vertical;
+      margin-top: 10px;
+    }
+    button {
+      background: #f57c00;
+      color: white;
+      border: none;
+      padding: 0.6rem 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 1rem;
+      font-weight: bold;
+    }
+    button:hover {
+      background: #d46a00;
+    }
+    .techai-tip {
+      background: #fff3e0;
+      border-left: 4px solid #f57c00;
+      font-style: italic;
+      padding: 0.7rem;
+      margin: 1rem 0;
+      color: #bf360c;
+    }
+    .popup {
+      display: none;
+      position: fixed;
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.3);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 999;
+      max-width: 90%;
+      text-align: center;
+    }
+    .popup.show {
+      display: block;
+    }
+    .close-btn {
+      background: #bf360c;
+      color: white;
+      margin-top: 1rem;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>☕ Java Beginner Lesson</h1>
+    <p>Write your first Java program and understand the basics!</p>
+  </header>
+  <div class="container">
+    <div class="step">
+      <h3>Step 1: Edit the Java Code</h3>
+      <p>Change the message inside the System.out.println statement:</p>
+      <textarea id="javaCode">
+public class HelloWorld {
+  public static void main(String[] args) {
+    System.out.println("Hello, Java World!");
+  }
+}
+      </textarea>
+    </div>
+    <div class="techai-tip">🐧 TechAI says: Java is powerful and popular for apps, games, and more!</div>
+    <button onclick="completeJavaLesson()">✅ Finish Lesson & Earn XP</button>
+  </div>
+  <div class="popup" id="popup">
+    <h2>🎉 Great Job!</h2>
+    <p>You earned <strong>100 XP</strong> and unlocked your Java Certificate!</p>
+    <p><a href="certificate-java.pdf" target="_blank">Download Certificate (PDF)</a></p>
+    <button class="close-btn" onclick="closePopup()">Close</button>
+  </div>
+  <script>
+    function completeJavaLesson() {
+      const code = document.getElementById('javaCode').value.trim();
+      if (code.length < 50) {
+        alert('Please write at least 50 characters in the code area.');
+        return;
+      }
+      document.getElementById('popup').classList.add('show');
+    }
+    function closePopup() {
+      document.getElementById('popup').classList.remove('show');
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>JavaScript Lesson | Innovation at Work</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #fff9e6;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background: #f0db4f;
+      color: #323330;
+      padding: 1rem;
+      text-align: center;
+    }
+    .container {
+      max-width: 900px;
+      margin: 2rem auto;
+      background: white;
+      padding: 1rem 2rem;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    .step {
+      background: #fff5cc;
+      border-left: 5px solid #f0db4f;
+      margin-bottom: 1.5rem;
+      padding: 1rem;
+      border-radius: 5px;
+    }
+    textarea {
+      width: 100%;
+      height: 150px;
+      font-family: monospace;
+      padding: 1rem;
+      margin-top: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      resize: vertical;
+    }
+    button {
+      background: #f0db4f;
+      color: #323330;
+      padding: 0.6rem 1.2rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    button:hover {
+      background: #d4bf30;
+    }
+    .techai-tip {
+      font-style: italic;
+      color: #444;
+      background: #fff5cc;
+      padding: 0.7rem;
+      border-left: 4px solid #f0db4f;
+      margin: 1rem 0;
+    }
+    .output {
+      background: #222;
+      color: #eee;
+      padding: 1rem;
+      border-radius: 5px;
+      height: 150px;
+      overflow-y: auto;
+      font-family: monospace;
+      margin-top: 10px;
+      white-space: pre-wrap;
+    }
+    .popup {
+      display: none;
+      position: fixed;
+      background: white;
+      padding: 2rem;
+      box-shadow: 0 0 20px rgba(0,0,0,0.3);
+      border-radius: 8px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 100;
+      max-width: 90%;
+    }
+    .popup.show {
+      display: block;
+    }
+    .close-btn {
+      background: red;
+      margin-top: 1rem;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>☕ Learn JavaScript</h1>
+    <p>Write JavaScript code and see it run! Complete to earn XP & a JavaScript certificate.</p>
+  </header>
+  <div class="container">
+    <div class="step">
+      <h3>Step 1: Try this JavaScript code</h3>
+      <p>Type your JS code below and click Run:</p>
+      <textarea id="jsCode">
+console.log("Hello, JavaScript World!");
+      </textarea>
+      <button onclick="runJS()">▶️ Run JavaScript</button>
+      <pre id="output" class="output"></pre>
+      <div class="techai-tip">🐧 TechAI says: JavaScript makes websites interactive and fun!</div>
+    </div>
+    <button onclick="completeLesson()">✅ Finish Lesson & Earn XP</button>
+  </div>
+  <div class="popup" id="congratsPopup">
+    <h2>🎉 Nice Job!</h2>
+    <p>You earned <strong>100 XP</strong> and unlocked your JavaScript Certificate!</p>
+    <p><a href="certificates/certificate-javascript.pdf" target="_blank">Download Certificate (PDF)</a></p>
+    <button class="close-btn" onclick="closePopup()">Close</button>
+  </div>
+  <script>
+    function runJS() {
+      const code = document.getElementById('jsCode').value;
+      const output = document.getElementById('output');
+      output.textContent = '';
+      try {
+        // Override console.log temporarily to capture output
+        const logs = [];
+        const originalConsoleLog = console.log;
+        console.log = function(...args) {
+          logs.push(args.join(' '));
+          originalConsoleLog.apply(console, args);
+        };
+        new Function(code)();
+        console.log = originalConsoleLog;
+        output.textContent = logs.join('\n');
+      } catch (e) {
+        output.textContent = 'Error: ' + e.message;
+      }
+    }
+    function completeLesson() {
+      document.getElementById('congratsPopup').classList.add('show');
+    }
+    function closePopup() {
+      document.getElementById('congratsPopup').classList.remove('show');
+    }
+  </script>
+</body>
+</html>

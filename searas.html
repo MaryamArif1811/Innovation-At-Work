@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>JavaScript Lesson | Innovation at Work</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #fff8e1;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background: #f9a825;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
+    .container {
+      max-width: 900px;
+      margin: 2rem auto;
+      background: white;
+      padding: 1rem 2rem;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    .step {
+      background: #fffde7;
+      border-left: 5px solid #f9a825;
+      margin-bottom: 1.5rem;
+      padding: 1rem;
+      border-radius: 5px;
+    }
+    textarea {
+      width: 100%;
+      height: 160px;
+      font-family: monospace;
+      padding: 1rem;
+      margin-top: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      resize: vertical;
+    }
+    iframe {
+      width: 100%;
+      height: 180px;
+      border: 1px solid #ccc;
+      margin-top: 10px;
+      border-radius: 5px;
+    }
+    button {
+      background: #f9a825;
+      color: #333;
+      padding: 0.6rem 1.2rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    button:hover {
+      background: #c17900;
+      color: white;
+    }
+    .techai-tip {
+      font-style: italic;
+      color: #444;
+      background: #fffde7;
+      padding: 0.7rem;
+      border-left: 4px solid #f9a825;
+      margin: 1rem 0;
+    }
+    .popup {
+      display: none;
+      position: fixed;
+      background: white;
+      padding: 2rem;
+      box-shadow: 0 0 20px rgba(0,0,0,0.3);
+      border-radius: 8px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 100;
+      max-width: 90%;
+    }
+    .popup.show {
+      display: block;
+    }
+    .close-btn {
+      background: red;
+      margin-top: 1rem;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🟨 Learn JavaScript</h1>
+    <p>Make your webpage interactive! Complete this to earn XP & a JavaScript certificate.</p>
+  </header>
+  <div class="container">
+    <div class="step">
+      <h3>Step 1: Try This JavaScript Code</h3>
+      <p>Edit and click Run to see how JavaScript works:</p>
+      <textarea id="jsCode">
+<!DOCTYPE html>
+<html>
+  <body>
+    <h2>Click the button to see a message:</h2>
+    <button onclick="showMessage()">Click me</button>
+    <script>
+      function showMessage() {
+        alert('Hello from JavaScript!');
+      }
+    </script>
+  </body>
+</html>
+      </textarea>
+      <button onclick="runJS()">▶️ Run JavaScript</button>
+      <iframe id="jsPreview"></iframe>
+      <div class="techai-tip">🐧 TechAI says: JavaScript makes your web pages dynamic and interactive!</div>
+    </div>
+    <button onclick="completeJSLesson()">✅ Finish Lesson & Earn XP</button>
+  </div>
+  <div class="popup" id="congratsPopup">
+    <h2>🎉 Well Done!</h2>
+    <p>You earned <strong>100 XP</strong> and unlocked your JavaScript Certificate!</p>
+    <p><a href="certificates/certificate-javascript.pdf" target="_blank">Download Certificate (PDF)</a></p>
+    <button class="close-btn" onclick="closePopup()">Close</button>
+  </div>
+  <script>
+    function runJS() {
+      const code = document.getElementById('jsCode').value;
+      const iframe = document.getElementById('jsPreview');
+      iframe.srcdoc = code;
+    }
+    function completeJSLesson() {
+      document.getElementById('congratsPopup').classList.add('show');
+    }
+    function closePopup() {
+      document.getElementById('congratsPopup').classList.remove('show');
+    }
+  </script>
+</body>
+</html>

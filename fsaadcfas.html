@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>C++ Lesson | Innovation at Work</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f7faff;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background: #5c2d91;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
+    .container {
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 1rem;
+      background: white;
+      border-radius: 8px;
+    }
+    .step {
+      background: #edeaff;
+      border-left: 5px solid #5c2d91;
+      margin-bottom: 1rem;
+      padding: 1rem;
+      border-radius: 5px;
+    }
+    textarea {
+      width: 100%;
+      height: 180px;
+      font-family: monospace;
+      padding: 1rem;
+      margin-top: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    iframe {
+      width: 100%;
+      height: 300px;
+      border: none;
+      margin-top: 10px;
+      border-radius: 5px;
+    }
+    button {
+      background: #5c2d91;
+      color: white;
+      padding: 0.6rem 1rem;
+      border: none;
+      border-radius: 5px;
+      margin-top: 1rem;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #431c6f;
+    }
+    .techai-tip {
+      font-style: italic;
+      color: #333;
+      background: #f2efff;
+      padding: 0.7rem;
+      border-left: 4px solid #5c2d91;
+      margin: 1rem 0;
+    }
+    .popup {
+      display: none;
+      position: fixed;
+      background: white;
+      padding: 2rem;
+      box-shadow: 0 0 20px rgba(0,0,0,0.3);
+      border-radius: 8px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 100;
+    }
+    .popup.show {
+      display: block;
+    }
+    .close-btn {
+      background: red;
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🧠 Learn C++</h1>
+    <p>Build your first program and get rewarded with XP and a certificate!</p>
+  </header>
+  <div class="container">
+    <div class="step">
+      <h3>Step 1: Understand the Code</h3>
+      <p>This is a simple C++ program that prints a message. Read it carefully:</p>
+      <textarea readonly>
+#include <iostream>
+using namespace std;
+int main() {
+    cout << "Hello, C++ World!" << endl;
+    return 0;
+}
+      </textarea>
+    </div>
+    <div class="step">
+      <h3>Step 2: Try It Online</h3>
+      <p>Use an online compiler to run the code (click below):</p>
+      <a href="https://www.onlinegdb.com/online_c++_compiler" target="_blank">
+        <button>▶️ Open C++ Compiler</button>
+      </a>
+    </div>
+    <div class="techai-tip">
+      🐧 TechAI says: C++ is great for creating games, software, and even robots. You’re learning real power!
+    </div>
+    <button onclick="completeLesson()">✅ Finish Lesson & Earn XP</button>
+  </div>
+  <div class="popup" id="congratsPopup">
+    <h2>🎉 Fantastic!</h2>
+    <p>You earned <strong>100 XP</strong> and unlocked your C++ Certificate!</p>
+    <p><a href="certificates/certificate-cpp.pdf" target="_blank">Download Certificate (PDF)</a></p>
+    <button class="close-btn" onclick="closePopup()">Close</button>
+  </div>
+  <script>
+    function completeLesson() {
+      document.getElementById("congratsPopup").classList.add("show");
+    }
+    function closePopup() {
+      document.getElementById("congratsPopup").classList.remove("show");
+    }
+  </script>
+</body>
+</html>

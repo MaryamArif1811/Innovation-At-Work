@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>My Profile | Innovation at Work</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f0f4fa;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: #0077cc;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+    }
+    .container {
+      max-width: 800px;
+      margin: 2rem auto;
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    }
+    .avatar {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid #0077cc;
+      margin-bottom: 1rem;
+    }
+    .xp-bar {
+      background: #eee;
+      border-radius: 10px;
+      overflow: hidden;
+      height: 20px;
+      margin-bottom: 1rem;
+    }
+    .xp-fill {
+      height: 100%;
+      background: #00bb66;
+      width: 0;
+    }
+    .badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .badge {
+      background-color: #ffcc00;
+      padding: 0.4rem 0.8rem;
+      border-radius: 20px;
+      font-weight: bold;
+      color: #333;
+    }
+    .section-title {
+      color: #0077cc;
+      margin-top: 1.5rem;
+    }
+    .cert-links {
+      margin-top: 0.5rem;
+    }
+    .cert-links a {
+      display: inline-block;
+      margin: 0.3rem 0;
+      text-decoration: none;
+      color: #0077cc;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🧑‍💻 My Profile</h1>
+  </header>
+  <div class="container">
+    <div style="text-align: center;">
+      <img id="avatar" class="avatar" src="" alt="Your Avatar" />
+      <h2 id="displayName">👤 Welcome, Learner!</h2>
+      <p id="levelStatus">Level: Newbie</p>
+    </div>
+    <div class="section-title">⭐ XP Progress</div>
+    <div class="xp-bar">
+      <div class="xp-fill" id="xpBar"></div>
+    </div>
+    <p id="xpDisplay">XP: 0</p>
+    <div class="section-title">🏅 Badges</div>
+    <div class="badges" id="badgesContainer">
+      <p>No badges yet. Start earning!</p>
+    </div>
+    <div class="section-title">📜 Certificates</div>
+    <div class="cert-links" id="certList">
+      <p>No certificates earned yet.</p>
+    </div>
+  </div>
+  <script>
+    function loadProfile() {
+      const user = sessionStorage.getItem('currentUser');
+      if (!user) {
+        window.location.href = "login.html";
+        return;
+      }
+      const users = JSON.parse(localStorage.getItem('users')) || {};
+      const data = users[user];
+      document.getElementById('displayName').innerText = `👤 Welcome, ${user}`;
+      document.getElementById('xpDisplay').innerText = `XP: ${data.xp}`;
+      const avatar = JSON.parse(localStorage.getItem('userSettings'))?.avatar || '';
+      if (avatar) document.getElementById('avatar').src = avatar;
+      const xpBar = document.getElementById('xpBar');
+      const xp = data.xp;
+      const percent = Math.min((xp % 1000) / 1000 * 100, 100);
+      xpBar.style.width = percent + "%";
+      let level = 'Newbie';
+      if (xp >= 1000) level = 'Beginner';
+      if (xp >= 2500) level = 'Intermediate';
+      if (xp >= 5000) level = 'Advanced';
+      if (xp >= 8000) level = 'Expert';
+      document.getElementById('levelStatus').innerText = `Level: ${level}`;
+      const badges = data.badges || [];
+      const badgeContainer = document.getElementById('badgesContainer');
+      badgeContainer.innerHTML = '';
+      if (badges.length === 0) {
+        badgeContainer.innerHTML = '<p>No badges yet. Start earning!</p>';
+      } else {
+        badges.forEach(b => {
+          const badge = document.createElement('div');
+          badge.className = 'badge';
+          badge.textContent = b;
+          badgeContainer.appendChild(badge);
+        });
+      }
+      const certs = data.certificates || [];
+      const certList = document.getElementById('certList');
+      certList.innerHTML = '';
+      if (certs.length === 0) {
+        certList.innerHTML = '<p>No certificates earned yet.</p>';
+      } else {
+        certs.forEach(c => {
+          const link = document.createElement('a');
+          link.href = c.url;
+          link.download = c.name;
+          link.textContent = `📄 ${c.name}`;
+          certList.appendChild(link);
+        });
+      }
+    }
+    loadProfile();
+  </script>
+</body>
+</html>

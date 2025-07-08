@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Login | Innovation at Work</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <header>
+    <img src="images/logo.png" class="logo" />
+    <h1>Login or Register</h1>
+    <select id="languageSelect">
+      <option value="en">🌐 English</option>
+      <option value="ar">🇸🇦 Arabic</option>
+      <option value="hi">🇮🇳 Hindi</option>
+      <option value="fr">🇫🇷 French</option>
+      <option value="ur">🇵🇰 Urdu</option>
+      <option value="es">🇪🇸 Spanish</option>
+    </select>
+  </header>
+  <main class="login-register">
+    <div id="registerDiv">
+      <h2>Create Account</h2>
+      <form id="registerForm">
+        <label for="username">Choose a username:</label><br />
+        <input type="text" id="username" placeholder="Your username" required /><br /><br />
+        <button type="submit">Register</button>
+      </form>
+      <p id="registerMsg"></p>
+    </div>
+    <div id="loginDiv" style="margin-top:2rem;">
+      <h2>Login</h2>
+      <form id="loginForm">
+        <label for="loginUsername">Username:</label><br />
+        <input type="text" id="loginUsername" placeholder="Your username" required /><br /><br />
+        <label for="loginPassword">Secret 6-digit code:</label><br />
+        <input type="password" id="loginPassword" placeholder="******" pattern="\d{6}" maxlength="6" required /><br /><br />
+        <button type="submit">Login</button>
+      </form>
+      <p id="loginMsg"></p>
+    </div>
+  </main>
+  <footer>
+    <div class="footer-links">
+      <a href="https://scratch.mit.edu/users/MaryamArif_1811/" target="_blank">My Scratch</a>
+      <a href="https://scratch.mit.edu/" target="_blank">Scratch</a>
+      <a href="https://pictoblox.ai/" target="_blank">Pictoblox</a>
+      <a href="https://developers.google.com/blockly" target="_blank">Blockly</a>
+    </div>
+    <img src="images/lets-innovate-together.png" class="footer-img" />
+    <p class="credit">🌟 Website proudly created by Maryam Arif 🌟</p>
+  </footer>
+  <script src="js/login.js"></script>
+  <script src="js/lang.js"></script>
+  <script src="js/techai.js"></script>
+</body>
+</html>

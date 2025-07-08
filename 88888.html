@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Submit Your Work | Innovation at Work</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 1rem;
+      background-color: #f2f2f2;
+    }
+    header {
+      background-color: #0077cc;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
+    form {
+      max-width: 600px;
+      margin: 2rem auto;
+      background-color: white;
+      padding: 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    label {
+      display: block;
+      margin-top: 1rem;
+      font-weight: bold;
+    }
+    input[type="text"],
+    textarea,
+    select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    input[type="file"] {
+      margin-top: 0.5rem;
+    }
+    button {
+      margin-top: 1.5rem;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .message {
+      margin-top: 1rem;
+      font-weight: bold;
+      color: green;
+    }
+    .note {
+      font-size: 0.9rem;
+      color: gray;
+      margin-top: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>📤 Submit Your Work</h1>
+  </header>
+  <form id="submissionForm">
+    <label for="title">Project Title</label>
+    <input type="text" id="title" required />
+    <label for="description">Description</label>
+    <textarea id="description" rows="5" placeholder="What is this about?" required></textarea>
+    <label for="category">Category</label>
+    <select id="category" required>
+      <option value="coding">Coding</option>
+      <option value="innovation">Innovation</option>
+      <option value="playground">Playground</option>
+    </select>
+    <label for="file">Upload File (optional)</label>
+    <input type="file" id="file" />
+    <div class="note">You can upload images, code files, or documents.</div>
+    <button type="submit">Submit Work</button>
+    <div class="message" id="submissionMsg"></div>
+  </form>
+  <script>
+    document.getElementById("submissionForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      // Simulated save
+      const title = document.getElementById("title").value;
+      const description = document.getElementById("description").value;
+      const category = document.getElementById("category").value;
+      const file = document.getElementById("file").files[0];
+      // Simulate XP
+      let xpEarned = 50;
+      if (description.length > 100) xpEarned += 20;
+      if (file) xpEarned += 30;
+      const msg = document.getElementById("submissionMsg");
+      msg.innerText = `✅ Work submitted! You’ve earned ${xpEarned} XP!`;
+      // Optionally save to localStorage
+      let submissions = JSON.parse(localStorage.getItem("submissions") || "[]");
+      submissions.push({ title, description, category, xp: xpEarned, date: new Date().toISOString() });
+      localStorage.setItem("submissions", JSON.stringify(submissions));
+      // Reset form
+      e.target.reset();
+    });
+  </script>
+</body>
+</html>

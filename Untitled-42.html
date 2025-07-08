@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Verbal Skills Lesson | Innovation at Work</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #fff3e0;
+      margin: 0; padding: 0;
+    }
+    header {
+      background: #f57c00;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
+    .container {
+      max-width: 900px;
+      margin: 2rem auto;
+      background: white;
+      padding: 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    .step {
+      background: #ffe0b2;
+      border-left: 6px solid #f57c00;
+      margin-bottom: 1.5rem;
+      padding: 1rem;
+      border-radius: 6px;
+    }
+    textarea {
+      width: 100%;
+      height: 140px;
+      font-family: inherit;
+      padding: 1rem;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      resize: vertical;
+      margin-top: 10px;
+    }
+    button {
+      background: #f57c00;
+      color: white;
+      border: none;
+      padding: 0.6rem 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 1rem;
+      font-weight: bold;
+    }
+    button:hover {
+      background: #bb4d00;
+    }
+    .popup {
+      display: none;
+      position: fixed;
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.3);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 999;
+    }
+    .popup.show {
+      display: block;
+    }
+    .close-btn {
+      background: #d32f2f;
+      color: white;
+      margin-top: 1rem;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .techai-tip {
+      background: #ffe0b2;
+      border-left: 4px solid #f57c00;
+      font-style: italic;
+      padding: 0.7rem;
+      margin: 1rem 0;
+      color: #bb4d00;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🗣️ Verbal Skills</h1>
+    <p>Practice your communication and express your ideas clearly!</p>
+  </header>
+  <div class="container">
+    <div class="step">
+      <h3>Step 1: Express Yourself</h3>
+      <p>Write about a time when you had to explain something important to someone. How did you do it?</p>
+      <textarea id="verbalExperience" placeholder="Share your experience here..."></textarea>
+    </div>
+    <div class="step">
+      <h3>Step 2: Creative Storytelling</h3>
+      <p>Invent a short story about an invention that changed the world. Describe it in your own words.</p>
+      <textarea id="verbalStory" placeholder="Write your story here..."></textarea>
+    </div>
+    <div class="techai-tip">🐧 TechAI says: Good verbal skills help you share your ideas and inspire others!</div>
+    <button onclick="completeVerbalLesson()">✅ Finish Lesson & Earn XP</button>
+  </div>
+  <div class="popup" id="popup">
+    <h2>🎉 Awesome!</h2>
+    <p>You earned <strong>100 XP</strong> and unlocked your Verbal Skills Certificate!</p>
+    <p><a href="certificate-verbal-skills.pdf" target="_blank">Download Certificate (PDF)</a></p>
+    <button class="close-btn" onclick="closePopup()">Close</button>
+  </div>
+  <script>
+    function completeVerbalLesson() {
+      const experience = document.getElementById('verbalExperience').value.trim();
+      const story = document.getElementById('verbalStory').value.trim();
+      if (experience.length < 10 || story.length < 10) {
+        alert('Please write detailed answers for both steps.');
+        return;
+      }
+      document.getElementById('popup').classList.add('show');
+    }
+    function closePopup() {
+      document.getElementById('popup').classList.remove('show');
+    }
+  </script>
+</body>
+</html>

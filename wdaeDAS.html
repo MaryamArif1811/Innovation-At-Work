@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Python Lesson | Innovation at Work</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f0f4f8;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background: #306998;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
+    .container {
+      max-width: 900px;
+      margin: 2rem auto;
+      background: white;
+      padding: 1rem 2rem;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    .step {
+      background: #e5f1fb;
+      border-left: 5px solid #306998;
+      margin-bottom: 1.5rem;
+      padding: 1rem;
+      border-radius: 5px;
+    }
+    textarea {
+      width: 100%;
+      height: 150px;
+      font-family: monospace;
+      padding: 1rem;
+      margin-top: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      resize: vertical;
+    }
+    button {
+      background: #306998;
+      color: white;
+      padding: 0.6rem 1.2rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    button:hover {
+      background: #254a6b;
+    }
+    .techai-tip {
+      font-style: italic;
+      color: #444;
+      background: #e5f1fb;
+      padding: 0.7rem;
+      border-left: 4px solid #306998;
+      margin: 1rem 0;
+    }
+    .popup {
+      display: none;
+      position: fixed;
+      background: white;
+      padding: 2rem;
+      box-shadow: 0 0 20px rgba(0,0,0,0.3);
+      border-radius: 8px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 100;
+      max-width: 90%;
+    }
+    .popup.show {
+      display: block;
+    }
+    .close-btn {
+      background: red;
+      margin-top: 1rem;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    #output {
+      background: #222;
+      color: #eee;
+      padding: 1rem;
+      border-radius: 5px;
+      height: 150px;
+      overflow-y: auto;
+      font-family: monospace;
+      margin-top: 10px;
+      white-space: pre-wrap;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🐍 Learn Python</h1>
+    <p>Write and run Python code! Complete this to earn XP & a Python certificate.</p>
+  </header>
+  <div class="container">
+    <div class="step">
+      <h3>Step 1: Try this Python code</h3>
+      <p>Type your Python code below and click Run:</p>
+      <textarea id="pythonCode">
+print("Hello, Python World!")
+      </textarea>
+      <button onclick="runPython()">▶️ Run Python</button>
+      <pre id="output"></pre>
+      <div class="techai-tip">🐧 TechAI says: Python is great for beginners and used everywhere!</div>
+    </div>
+    <button onclick="completePythonLesson()">✅ Finish Lesson & Earn XP</button>
+  </div>
+  <div class="popup" id="congratsPopup">
+    <h2>🎉 Well Done!</h2>
+    <p>You earned <strong>100 XP</strong> and unlocked your Python Certificate!</p>
+    <p><a href="certificates/certificate-python.pdf" target="_blank">Download Certificate (PDF)</a></p>
+    <button class="close-btn" onclick="closePopup()">Close</button>
+  </div>
+  <script src="https://cdn.jsdelivr.net/pyodide/v0.23.4/full/pyodide.js"></script>
+  <script>
+    let pyodideReadyPromise = loadPyodide();
+    async function runPython() {
+      const outputEl = document.getElementById('output');
+      outputEl.textContent = "Running...";
+      const code = document.getElementById('pythonCode').value;
+      try {
+        const pyodide = await pyodideReadyPromise;
+        let result = await pyodide.runPythonAsync(code);
+        outputEl.textContent = result === undefined ? '' : result;
+      } catch (err) {
+        outputEl.textContent = 'Error: ' + err;
+      }
+    }
+    function completePythonLesson() {
+      document.getElementById('congratsPopup').classList.add('show');
+    }
+    function closePopup() {
+      document.getElementById('congratsPopup').classList.remove('show');
+    }
+  </script>
+</body>
+</html>

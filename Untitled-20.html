@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Innovation at Work - Coding Playground & Lessons</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 1rem;
+    background: #fefefe;
+    color: #222;
+  }
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+  }
+  h1 {
+    margin: 0;
+    color: #0077cc;
+  }
+  nav a {
+    margin-left: 1rem;
+    text-decoration: none;
+    color: #0077cc;
+    font-weight: bold;
+  }
+  nav a:hover {
+    text-decoration: underline;
+  }
+  select, button {
+    font-size: 1rem;
+    padding: 0.4em 0.8em;
+    border-radius: 5px;
+    border: 1px solid #aaa;
+    margin-bottom: 1rem;
+  }
+  #lesson {
+    background: #e7f0ff;
+    border: 1px solid #a3c2ff;
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+  }
+  textarea#codeEditor {
+    width: 100%;
+    height: 150px;
+    font-family: monospace;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    resize: vertical;
+  }
+  button#runBtn {
+    background-color: #0077cc;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  button#runBtn:hover {
+    background-color: #005fa3;
+  }
+  #output {
+    background: #222;
+    color: #0f0;
+    font-family: monospace;
+    padding: 1rem;
+    border-radius: 8px;
+    min-height: 80px;
+    white-space: pre-wrap;
+    margin-bottom: 1rem;
+  }
+  #xpInfo {
+    font-weight: bold;
+    color: #0077cc;
+    margin-bottom: 1rem;
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>Coding Playground & Lessons</h1>
+  <nav>
+    <a href="index.html">Dashboard</a>
+    <a href="activities.html">Activities</a>
+    <a href="login.html" id="logoutLink">Logout</a>
+  </nav>
+</header>
+<div id="welcomeMsg"></div>
+<label for="languageSelect">Choose a language:</label>
+<select id="languageSelect">
+  <option value="">--Select--</option>
+  <option value="javascript">JavaScript</option>
+  <option value="python">Python (demo)</option>
+  <option value="htmlcss">HTML & CSS</option>
+  <option value="java">Java (demo)</option>
+  <option value="csharp">C# (demo)</option>
+  <option value="cpp">C++ (demo)</option>
+  <option value="ruby">Ruby (demo)</option>
+  <option value="php">PHP (demo)</option>
+  <option value="kotlin">Kotlin (demo)</option>
+  <option value="swift">Swift (demo)</option>
+  <option value="sql">SQL (demo)</option>
+  <option value="typescript">TypeScript (demo)</option>
+  <option value="scratch">Scratch (info & links)</option>
+</select>
+<div id="lesson" style="display:none;"></div>
+<textarea id="codeEditor" placeholder="Write your code here..." style="display:none;"></textarea>
+<button id="runBtn" style="display:none;">Run Code</button>
+<div id="output"></div>
+<p id="xpInfo">Your XP: 0</p>
+<script>
+  const currentUser = sessionStorage.getItem('currentUser');
+  if (!currentUser) {
+    window.location.href = 'login.html';
+  }
+  let users = JSON.parse(localStorage.getItem('users')) || {};
+  let user = users[currentUser];
+  if (!user) {
+    alert('User data not found! Redirecting to login.');
+    window.location.href = 'login.html';
+  }
+  document.getElementById('welcomeMsg').textContent = `Hello, ${currentUser}! Choose a language and start learning.`;
+  const languageSelect = document.getElementById('languageSelect');
+  const lessonDiv = document.getElementById('lesson');
+  const codeEditor = document.getElementById('codeEditor');
+  const runBtn = document.getElementById('runBtn');
+  const output = document.getElementById('output');
+  const xpInfo = document.getElementById('xpInfo');
+  // Lessons content for demo
+  const lessons = {
+    javascript: {
+      lessonText: `JavaScript Lesson:\nLearn how to print messages.\nTry this code:\nconsole.log('Hello, world!');`,
+      starterCode: `console.log('Hello, world!');`
+    },
+    python: {
+      lessonText: `Python Lesson (demo):\nPrint a message:\nprint('Hello, world!')`,
+      starterCode: `print('Hello, world!')`
+    },
+    htmlcss: {
+      lessonText: `HTML & CSS Lesson:\nWrite simple HTML and CSS.\nExample:\n<html><body><h1>Hello</h1></body></html>`,
+      starterCode: `<html>\n  <body>\n    <h1>Hello, world!</h1>\n  </body>\n</html>`
+    },
+    java: {
+      lessonText: `Java Lesson (demo):\nPrint a message using System.out.println:\npublic class Main {\n  public static void main(String[] args) {\n    System.out.println("Hello, world!");\n  }\n}`,
+      starterCode: `public class Main {\n  public static void main(String[] args) {\n    System.out.println("Hello, world!");\n  }\n}`
+    },
+    csharp: {
+      lessonText: `C# Lesson (demo):\nPrint using Console.WriteLine:\nusing System;\nclass Program {\n  static void Main() {\n    Console.WriteLine("Hello, world!");\n  }\n}`,
+      starterCode: `using System;\nclass Program {\n  static void Main() {\n    Console.WriteLine("Hello, world!");\n  }\n}`
+    },
+    cpp: {
+      lessonText: `C++ Lesson (demo):\nPrint using cout:\n#include <iostream>\nusing namespace std;\nint main() {\n  cout << "Hello, world!\\n";\n  return 0;\n}`,
+      starterCode: `#include <iostream>\nusing namespace std;\nint main() {\n  cout << "Hello, world!\\n";\n  return 0;\n}`
+    },
+    ruby: {
+      lessonText: `Ruby Lesson (demo):\nPrint using puts:\nputs 'Hello, world!'`,
+      starterCode: `puts 'Hello, world!'`
+    },
+    php: {
+      lessonText: `PHP Lesson (demo):\nPrint using echo:\n<?php echo "Hello, world!"; ?>`,
+      starterCode: `<?php echo "Hello, world!"; ?>`
+    },
+    kotlin: {
+      lessonText: `Kotlin Lesson (demo):\nPrint using println:\nfun main() {\n  println("Hello, world!")\n}`,
+      starterCode: `fun main() {\n  println("Hello, world!")\n}`
+    },
+    swift: {
+      lessonText: `Swift Lesson (demo):\nPrint using print:\nprint("Hello, world!")`,
+      starterCode: `print("Hello, world!")`
+    },
+    sql: {
+      lessonText: `SQL Lesson (demo):\nSelect all rows from table:\nSELECT * FROM users;`,
+      starterCode: `SELECT * FROM users;`
+    },
+    typescript: {
+      lessonText: `TypeScript Lesson (demo):\nPrint using console.log:\nconsole.log('Hello, world!');`,
+      starterCode: `console.log('Hello, world!');`
+    },
+    scratch: {
+      lessonText: `Scratch is a block coding language. Visit [Scratch website](https://scratch.mit.edu) to create projects and learn more.`,
+      starterCode: ``
+    }
+  };
+  languageSelect.addEventListener('change', () => {
+    const lang = languageSelect.value;
+    output.textContent = '';
+    if (!lang) {
+      lessonDiv.style.display = 'none';
+      codeEditor.style.display = 'none';
+      runBtn.style.display = 'none';
+      return;
+    }
+    lessonDiv.style.display = 'block';
+    codeEditor.style.display = 'block';
+    runBtn.style.display = 'block';
+    lessonDiv.textContent = lessons[lang].lessonText;
+    codeEditor.value = lessons[lang].starterCode;
+    if (lang !== 'javascript') {
+      runBtn.disabled = true;
+      runBtn.textContent = 'Run Code (JavaScript only)';
+    } else {
+      runBtn.disabled = false;
+      runBtn.textContent = 'Run Code';
+    }
+  });
+  runBtn.addEventListener('click', () => {
+    if (languageSelect.value !== 'javascript') {
+      output.textContent = 'Sorry, running code is only supported for JavaScript.';
+      return;
+    }
+    try {
+      const result = eval(codeEditor.value);
+      output.textContent = result === undefined ? 'Code ran successfully (no output)' : result;
+      // Award XP for completing this lesson
+      if (!user.lessonsCompleted) user.lessonsCompleted = {};
+      if (!user.lessonsCompleted.javascript) {
+        user.xp = (user.xp || 0) + 50;
+        user.lessonsCompleted.javascript = true;
+        users[currentUser] = user;
+        localStorage.setItem('users', JSON.stringify(users));
+        xpInfo.textContent = `Your XP: ${user.xp}`;
+        alert('Congrats! You earned 50 XP for completing the JavaScript lesson.');
+      }
+    } catch (err) {
+      output.textContent = `Error: ${err.message}`;
+    }
+  });
+  // Show initial XP
+  xpInfo.textContent = `Your XP: ${user.xp || 0}`;
+  // Logout link action
+  document.getElementById('logoutLink').addEventListener('click', () => {
+    sessionStorage.removeItem('currentUser');
+  });
+</script>
+</body>
+</html>

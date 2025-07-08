@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Your Certificates</title>
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      background: #fdfdfd;
+    }
+    header {
+      background: #0077cc;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
+    .container {
+      padding: 2rem;
+      max-width: 800px;
+      margin: auto;
+    }
+    .certificate {
+      background: white;
+      border: 4px solid #0077cc;
+      padding: 2rem;
+      margin-bottom: 1.5rem;
+      text-align: center;
+      border-radius: 10px;
+    }
+    .cert-title {
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 1rem;
+    }
+    .cert-name {
+      font-size: 20px;
+      color: #333;
+      margin-bottom: 1rem;
+    }
+    .buttons {
+      margin-top: 1rem;
+    }
+    button {
+      margin: 0.5rem;
+      padding: 10px 15px;
+      border: none;
+      background: #0077cc;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    #nameInput {
+      margin-bottom: 1rem;
+      padding: 8px;
+      font-size: 1rem;
+      width: 100%;
+      max-width: 300px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+<header>
+  <h1>Your Certificates 🏆</h1>
+</header>
+<div class="container">
+  <input type="text" id="nameInput" placeholder="Enter your name for certificate"/>
+  <div id="certList">
+    <!-- Certificates inserted here -->
+  </div>
+</div>
+<script>
+  const certList = document.getElementById('certList');
+  const nameInput = document.getElementById('nameInput');
+  const user = sessionStorage.getItem('currentUser');
+  let users = JSON.parse(localStorage.getItem('users')) || {};
+  let name = user ? user : '';
+  if (!user) {
+    nameInput.style.display = 'block';
+    nameInput.addEventListener('input', () => {
+      name = nameInput.value;
+    });
+  }
+  const certificates = [
+    "Innovation Activities Completion",
+    "First Coding Lesson Finished",
+    "Shared Your Work with the World",
+    "Completed Intermediate Level",
+    "Mastered Your First Language",
+    "Joined Innovation-at-Work"
+  ];
+  function createCert(title) {
+    const certDiv = document.createElement('div');
+    certDiv.className = 'certificate';
+    certDiv.innerHTML = `
+      <div class="cert-title">${title}</div>
+      <div class="cert-name">${name || '_________'}</div>
+      <div class="buttons">
+        <button onclick="downloadCert(this, 'pdf')">Download PDF</button>
+        <button onclick="downloadCert(this, 'png')">Download PNG</button>
+        <button onclick="downloadCert(this, 'jpg')">Download JPG</button>
+      </div>
+    `;
+    certList.appendChild(certDiv);
+  }
+  certificates.forEach(title => createCert(title));
+  function downloadCert(btn, type) {
+    const cert = btn.closest('.certificate');
+    html2canvas(cert).then(canvas => {
+      if (type === 'pdf') {
+        const { jsPDF } = window.jspdf;
+        const pdf = new jsPDF();
+        pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 10, 10, 190, 120);
+        pdf.save('certificate.pdf');
+      } else {
+        const link = document.createElement('a');
+        link.href = canvas.toDataURL(`image/${type}`);
+        link.download = `certificate.${type}`;
+        link.click();
+      }
+    });
+  }
+</script>
+</body>
+</html>

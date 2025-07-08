@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Certificates | Innovation at Work</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <header>
+    <img src="images/logo.png" class="logo" />
+    <h1>Certificates</h1>
+    <select id="languageSelect">
+      <option value="en">🌐 English</option>
+      <option value="ar">🇸🇦 Arabic</option>
+      <option value="hi">🇮🇳 Hindi</option>
+      <option value="fr">🇫🇷 French</option>
+      <option value="ur">🇵🇰 Urdu</option>
+      <option value="es">🇪🇸 Spanish</option>
+    </select>
+  </header>
+  <main class="certificates">
+    <h2>Download your certificates</h2>
+    <form id="certForm">
+      <label for="nameInput">Your full name:</label><br />
+      <input type="text" id="nameInput" placeholder="Write your name here" required /><br /><br />
+      <label for="eventSelect">Select event/activity:</label><br />
+      <select id="eventSelect" required>
+        <option value="">-- Choose an event --</option>
+        <option value="innovation_leader">Innovation Leader for a Day</option>
+        <option value="poster_presentation">Create a Poster or Presentation</option>
+        <option value="paragraph_innovation">Write about Innovation</option>
+        <option value="environment_invention">Draw Environment Invention</option>
+        <option value="innovate_acronym">INNOVATE Acronym</option>
+        <option value="code_invention">Code Your Invention</option>
+        <option value="coding_lesson">Coding Lesson Completion</option>
+        <option value="submit_work">Submit Your Work</option>
+      </select><br /><br />
+      <button type="submit">Generate Certificate</button>
+    </form>
+    <canvas id="certificateCanvas" style="display:none;"></canvas>
+    <div id="downloadLinks" style="display:none; margin-top:1rem;">
+      <p>Download your certificate as:</p>
+      <button id="downloadPNG">PNG</button>
+      <button id="downloadJPG">JPG</button>
+      <button id="downloadPDF">PDF</button>
+    </div>
+  </main>
+  <footer>
+    <div class="footer-links">
+      <a href="https://scratch.mit.edu/users/MaryamArif_1811/" target="_blank">My Scratch</a>
+      <a href="https://scratch.mit.edu/" target="_blank">Scratch</a>
+      <a href="https://pictoblox.ai/" target="_blank">Pictoblox</a>
+      <a href="https://developers.google.com/blockly" target="_blank">Blockly</a>
+    </div>
+    <img src="images/lets-innovate-together.png" class="footer-img" />
+    <p class="credit">🌟 Website proudly created by Maryam Arif 🌟</p>
+  </footer>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="js/certificate.js"></script>
+  <script src="js/lang.js"></script>
+  <script src="js/techai.js"></script>
+</body>
+</html>

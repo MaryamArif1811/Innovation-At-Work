@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Scratch Lesson | Innovation at Work</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #eaf4ff;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background: #ff704d;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
+    .container {
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 1rem;
+      background: white;
+      border-radius: 8px;
+    }
+    iframe {
+      width: 100%;
+      height: 480px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+    button {
+      background: #ff704d;
+      color: white;
+      padding: 0.6rem 1.2rem;
+      border: none;
+      border-radius: 8px;
+      margin-top: 1rem;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    button:hover {
+      background: #d65a3c;
+    }
+    .techai-tip {
+      font-style: italic;
+      color: #993300;
+      background: #ffd6cc;
+      padding: 0.7rem;
+      border-left: 4px solid #cc3300;
+      margin: 1rem 0;
+    }
+    .popup {
+      display: none;
+      position: fixed;
+      background: white;
+      padding: 2rem;
+      box-shadow: 0 0 20px rgba(0,0,0,0.3);
+      border-radius: 8px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 100;
+    }
+    .popup.show {
+      display: block;
+    }
+    .close-btn {
+      background: #cc3300;
+      margin-top: 1rem;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🐱🏍️ Learn Scratch</h1>
+    <p>Explore Scratch coding! Complete this lesson to earn XP & your Scratch certificate.</p>
+  </header>
+  <div class="container">
+    <iframe src="https://scratch.mit.edu/projects/your_project_id/embed" allowtransparency="true" allowfullscreen frameborder="0"></iframe>
+    <button onclick="completeLesson()">✅ Finish Lesson & Earn XP</button>
+    <div class="techai-tip">🐧 TechAI says: Scratch is a fun block-based coding platform where you create games and stories!</div>
+  </div>
+  <div class="popup" id="congratsPopup">
+    <h2>🎉 Awesome!</h2>
+    <p>You earned <strong>100 XP</strong> and unlocked your Scratch Certificate!</p>
+    <p><a href="certificate-scratch.pdf" target="_blank">Download Certificate (PDF)</a></p>
+    <button class="close-btn" onclick="closePopup()">Close</button>
+  </div>
+  <script>
+    function completeLesson() {
+      document.getElementById('congratsPopup').classList.add('show');
+    }
+    function closePopup() {
+      document.getElementById('congratsPopup').classList.remove('show');
+    }
+  </script>
+</body>
+</html>

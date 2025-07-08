@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>AI Lesson | Innovation at Work</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f9ff;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background: #1f618d;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
+    .container {
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 1.5rem;
+      background: white;
+      border-radius: 10px;
+    }
+    .step {
+      background: #e8f4ff;
+      border-left: 6px solid #3498db;
+      margin-bottom: 1.5rem;
+      padding: 1rem;
+      border-radius: 6px;
+    }
+    textarea {
+      width: 100%;
+      height: 120px;
+      padding: 1rem;
+      font-family: inherit;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      resize: vertical;
+      margin-top: 10px;
+    }
+    button {
+      background: #1f618d;
+      color: white;
+      padding: 0.6rem 1rem;
+      border: none;
+      border-radius: 5px;
+      margin-top: 1rem;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #154360;
+    }
+    .popup {
+      display: none;
+      position: fixed;
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.3);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 999;
+    }
+    .popup.show {
+      display: block;
+    }
+    .close-btn {
+      background: red;
+      margin-top: 1rem;
+    }
+    .techai-tip {
+      background: #f0faff;
+      padding: 0.7rem;
+      border-left: 4px solid #2980b9;
+      margin: 1rem 0;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🧠 Learn Artificial Intelligence</h1>
+    <p>Understand how AI works and create your own idea. Complete this lesson to earn XP and a certificate!</p>
+  </header>
+  <div class="container">
+    <div class="step">
+      <h3>Step 1: What is AI?</h3>
+      <p>In your own words, explain what you think AI (Artificial Intelligence) is. Where have you seen it used?</p>
+      <textarea id="aiExplanation" placeholder="Write your explanation here..."></textarea>
+    </div>
+    <div class="step">
+      <h3>Step 2: Design Your Own AI</h3>
+      <p>Imagine you could create your own AI assistant. What would it do? How would it help people?</p>
+      <textarea id="aiIdea" placeholder="Describe your AI assistant..."></textarea>
+    </div>
+    <div class="techai-tip">🐧 TechAI says: AI helps computers think, learn, and help us — like me! AI is everywhere, from games to hospitals!</div>
+    <button onclick="finishAILesson()">✅ Finish Lesson & Earn XP</button>
+  </div>
+  <div class="popup" id="popup">
+    <h2>🎉 Amazing Work!</h2>
+    <p>You earned <strong>100 XP</strong> and unlocked your AI Certificate!</p>
+    <p><a href="certificate-ai.pdf" target="_blank">Download Certificate (PDF)</a></p>
+    <button class="close-btn" onclick="closePopup()">Close</button>
+  </div>
+  <script>
+    function finishAILesson() {
+      const idea = document.getElementById("aiIdea").value.trim();
+      const expl = document.getElementById("aiExplanation").value.trim();
+      if (idea.length < 10 || expl.length < 10) {
+        alert("Please answer both steps with more detail.");
+        return;
+      }
+      document.getElementById("popup").classList.add("show");
+    }
+    function closePopup() {
+      document.getElementById("popup").classList.remove("show");
+    }
+  </script>
+</body>
+</html>
